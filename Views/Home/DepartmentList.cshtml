@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Department List";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+}
+@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>*@
+@*<link href="~/Scripts/datatables.min.css" rel="stylesheet" />*@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+@*<h2>DepartmentList</h2>*@
+<div style="width:50%;margin:0 auto;">
+    <table id="tblDept">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+    @*<script src="~/Scripts/datatables.min.js"></script>*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#tblDept").DataTable({
+                "processing": true,
+                "serverSide": true,
+                "filter": false,
+                "orderMulti": false,
+                "ajax": {
+                    "url": "Trans/LoadData",
+                    "type": "POST",
+                    "datatype": "Json"
+                },
+                "columns": [
+                    { "data": "DP_CD", "Code": "DP_CD", "autowidth": true },
+                    { "data": "DP_NAME", "Name": "DP_NAME", "autowidth": true }
+                ]
+            });
+        });
+    </script>
+}

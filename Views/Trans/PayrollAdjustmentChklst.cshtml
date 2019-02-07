@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Payroll Adjustment Checkklist";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+}
+
+@*<link href="~/Scripts/datatables.min.css" rel="stylesheet" />*@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<div style="width:50%;margin:0 auto;">
+    <table id="tblPaAdjh">
+        <thead>
+            <tr>
+                <th>Doc.No.</th>
+                <th>Doc.Date</th>
+                <th>Month</th>
+                <th>Year</th>
+                <th>Header</th>
+                <th>Title</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section Scripts{
+    @*<script src="~/Scripts/datatables.min.js"></script>*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#tblPaAdjh").DataTable({
+                "processing": true,
+                "serverSide": true,
+                "filter": false,
+                "orderMulti": false,
+                "ajax": {
+                    "url": "Trans/PayrollAdjdChklst",
+                    "type": "POST",
+                    "datatype": "Json"
+                },
+                "columns": [
+                    {
+                        "data": "PA_DOCNO", "Code": "PA_DOCNO", "autowidth": true,
+                        "mRender": function (data, type, full,meta) {
+                            return '<a href="/Trans/De_PayrollAdj/?DocNo=' + full.PA_DOCNO + '">' + full.PA_DOCNO  + '</a>';
+                        }},
+                    {
+                        "data": "PA_DOCDATE", "autowidth": true, "type": 'date',
+                        "render": function (value) {
+                            if (value === null) return "";
+                            var pattern = /Date\(([^)]+)\)/;//date format from server side
+                            var results = pattern.exec(value);
+                            var dt = new Date(parseFloat(results[1]));
+
+                            return dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
+                        }, "autoWidth": true
+                    },
+                    { "data": "PA_MONTH", "Month": "PA_MONTH", "autowidth": true },
+                    { "data": "PA_YEAR", "Year": "PA_YEAR", "autowidth": true },
+                    { "data": "PA_HEADER", "Header": "PA_HEADER", "autowidth": true },
+                    { "data": "PA_TITLE", "Header": "PA_TITLE", "autowidth": true },
+                    {
+                        data: null,
+                        className: "center",
+                        defaultContent: '<a href="@Url.Action("De_PayrollAdj", "Trans", new { DocNo = " + data + " })">Edit</a>'
+                    }
+                ]
+            });
+        });
+
+       
+
+    </script>
+}
+

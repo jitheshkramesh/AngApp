@@ -1,0 +1,88 @@
+﻿@model IEnumerable<AngApp.VW_EMPLOYEE>
+
+@{
+    ViewBag.Title = "EmpList";
+
+    var grid = new WebGrid(canPage: true, rowsPerPage: 10);
+    grid.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //WebGrid grid = new WebGrid(Model);
+}
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/tableexport.min.css" rel="stylesheet" />*@
+<h2>Employee List</h2>
+<script src="~/Scripts/jquery.table2excel.min.js"></script>
+
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">Search</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            @using (Html.BeginForm("EmpList", "Home", FormMethod.Get, new { @class = "navbar-form-left" }))
+            {
+                <div class="form-group">
+                    <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="search" />
+                </div>
+                <button type="submit" value="Search" class="btn btn-success">Search</button>
+            }
+        </div>
+    </nav>
+    <div>
+        @grid.Table(
+        tableStyle: "table table-responsive table-bordered",
+        htmlAttributes: new { id = "tablegrd" },
+        columns: grid.Columns(
+        grid.Column(columnName: "EM_CODE", header: "Emp.Code"),
+        grid.Column(columnName: "EM_NAME", header: "First Name"),
+        grid.Column(columnName: "EM_LASTNAME", header: "Last Name"),
+        grid.Column(columnName: "EM_ADDRESS", header: "Address"),
+        grid.Column(columnName: "EM_DOBC", header: "Date Of Birth"),
+        grid.Column(columnName: "EM_DOJC", header: "Date Of Join"),
+        grid.Column(columnName: "EM_PHONE", header: "Phone")
+        )
+    )
+        <div class="row">
+            <div class="col-sm-6">
+                @grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-small pagination-right")
+            </div>
+        </div>
+        @Html.Hidden("dir", grid.SortDirection)
+        @Html.Hidden("col", grid.SortColumn)
+    </div>
+
+</div>
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>*@
+<script>
+    $(function () {
+        try {
+            var dir = $('#dir').val();
+            var col = $('#col').val();
+            var header = $("th a[href*=" + col + "]");
+            if (dir === "Ascending") {
+                header.text(header.text() + " ▲");
+            }
+            if (dir === "Descending") {
+                header.text(header.text() + " ▼");
+            }
+        } catch (e) {
+            //return false;
+        }
+    });
+</script>
+<a href="@Url.Action("ExportToExcel","Home")">Export To Excel</a>
+<button id="btnExport">Export To Excel Jquery</button>
+<script>
+    $(function () {
+        $('#btnExport').click(function () {
+            $('#tablegrd').table2excel();
+        });
+    });
+</script>
+@*<script src="~/Scripts/tableexport.min.js"></script>
+    <script>
+        $('table').tableExport({
+            bootstrap: false
+        });
+    </script>*@

@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Employee</h2>
+
+<div>
+    @using (Html.BeginForm("Employee", "Home", FormMethod.Post))
+    {
+    <div class="container top5">
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">Employee Code :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <textarea name="txtCode" style="width:100px;" rows="1" cols="1">@ViewBag.EM_CODE</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">First Name :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <textarea name="txtFName" style="width:200px;" rows="1" cols="1">@ViewBag.EM_NAME</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">Last Name :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <textarea name="txtLName" style="width:200px;" rows="1" cols="1">@ViewBag.EM_LASTNAME</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">Address :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <textarea name="txtAddress" style="width:300px;" rows="3" cols="1">@ViewBag.EM_ADDRESS</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">Phone :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <textarea name="txtPhone" style="width:100px;" rows="1" cols="1">@ViewBag.EM_PHONE</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">Gender :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <textarea name="txtGender" style="width:100px;" rows="1" cols="1">@ViewBag.EM_GENDER</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">Date of Birth :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <textarea name="txtDob" style="width:100px;" rows="1" cols="1">@ViewBag.EM_DOB</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">Date of Join :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <textarea name="txtDoj" style="width:100px;" rows="1" cols="1">@ViewBag.EM_DOJ</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">Photo :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <textarea name="txtPhoto" style="width:250px;" rows="1" cols="1">@ViewBag.EM_PHOTO</textarea>
+                    @*<input id="ImageUpload" name="ImageUpload" class="form-control" type="file" />*@
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">Country :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <textarea name="txtCountry" style="width:100px;" rows="1" cols="1">@ViewBag.EM_COUNTRY</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-3 inner">Active :</div>
+                <div class="col-md-3 col-xs-3 inner">
+                    <input type="checkbox" id="chkActive" checked="@ViewBag.EM_ACTIVE" name="chkActive" />Is Active ?
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pt-md-2 pl-md-3 col-md-12 col-xs-12">
+                <input id="btnSubmit" type="submit" value="Submit" />
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+<script>
+    function AjaxPost(formData) {
+        var ajaxConfig = {
+            type: "post",
+            url: "/Home/UploadData",
+            data: new FormData(FormData),
+            success: function (result) {
+                alert(result);
+                window.location.href = "/Home/AddNewEmp";
+            }
+        };
+        if ($(formData).attr('enctype') === "multipart/form-data") {
+            ajaxConfig["contentType"] = false;
+            ajaxConfig["processData"] = false;
+        }
+        $.ajax(ajaxConfig);
+        return false;
+    }
+</script>

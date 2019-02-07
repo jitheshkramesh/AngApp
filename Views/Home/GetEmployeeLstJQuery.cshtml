@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Employee List JQuery";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+}
+
+<h2>Employee List JQuery</h2>
+<table id="EmpDetails" class="display">
+    <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>
+                Employee Code
+            </th>
+            <th>
+                Employee Name
+            </th>
+            <th>
+                Employee Phone
+            </th>
+            <th>
+                Employee Email
+            </th>
+            <th>
+                Employee DoB
+            </th>
+            <th>Employee DoJ</th>
+        </tr>
+    </thead>
+</table>
+<link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" rel="stylesheet"/>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#EmpDetails').DataTable({
+                "ajax": {
+                    "url": "Home/EmpJqList",
+                    "type": "GET",
+                    "dataType": "JSon"
+                },
+                "columns": [
+                    { "data": "EM_ID" },
+                    { "data": "EM_CODE" },
+                    { "data": "EM_NAME" },
+                    { "data": "EM_PHONE" },
+                    { "data": "EM_MAIL" },
+                    { "data": "EM_DOBC" },
+                    { "data": "EM_DOJC" }
+                ],
+                "dom": "Bfstip",
+                "buttons": [
+                    {
+                        extend: 'copy',
+                        className: 'copyButton',
+                        text:'<li class="fa fa-clone"></li>Copy'
+                    },
+                    {
+                        extend: 'excel',
+                        text: '<li class="fa fa-file-excel-o"></li>Excel' },
+                    {
+                        extend: 'pdf',
+                        text: '<li class="fa fa-file-pdf-o"></li>pdf' },
+                    {
+                        extend: 'csv',
+                        text: '<li class="fa fa-clone"></li>Csv' },
+                    {
+                        extend: 'print',
+                        text: '<li class="fa fa-print"></li>Print' }]
+            });
+        });
+    </script>
+}

@@ -1,0 +1,17 @@
+﻿@model AngApp.ViewModel.MultipleData
+
+@{
+    ViewBag.Title = "MulitpleData";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+}
+
+<h2>MulitpleData</h2>
+<div>
+    @{ WebGrid obj = new WebGrid(source: Model.TTMaster, canPage: true, rowsPerPage: 10);}
+    @obj.GetHtml();
+</div>
+<br />
+<div>
+    @{ WebGrid obj2 = new WebGrid(source: Model.EmployeeSalary, canPage: true, rowsPerPage: 10);}
+    @obj2.GetHtml();
+</div>

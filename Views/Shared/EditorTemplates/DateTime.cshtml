@@ -1,0 +1,5 @@
+﻿@model DateTime?
+@if (Model != null && Model != DateTime.MinValue)
+{
+    @Html.TextBox("", Model.HasValue ? Model.Value.ToString("dd/MM/yyyy") : "", new { @class = "date" })
+}

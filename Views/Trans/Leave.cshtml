@@ -1,0 +1,230 @@
+﻿@model AngApp.DT_LEAVE
+
+@{
+    ViewBag.Title = "Leave";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+}
+
+@*<h2>Leave</h2>*@
+
+@using (Html.BeginForm("Leave", "Trans", FormMethod.Post, new { id = "Leave" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @*<h4>DT_LEAVE</h4>
+        <hr />*@
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            Doc.No. :
+        </label>
+        <div class="col-md-2">
+            <input type="text" id="LV_DOC_NO" name="LV_DOC_NO" placeholder="Doc.No" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 text-right">
+            Doc.Date :
+        </label>
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.LV_DOC_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LV_DOC_DATE, "", new { @class = "text-danger" })*@
+            <input type="text" id="LV_DOC_DATE" name="LV_DOC_DATE"
+                   placeholder="Doc.Date"
+                   class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 text-right">
+            Employee :
+        </label>
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.LV_EMPNO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LV_EMPNO, "", new { @class = "text-danger" })*@
+            <div class="col-md-2 text-left">
+                <input type="text" id="EMP_ID" name="EMP_ID" placeholder="Emp.Code" class="form-control" />
+            </div>
+            <div class="col-md-4 text-left">
+                <input type="text" id="EM_NAME" name="EM_NAME" placeholder="Emp.Name" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 text-right">
+            Email :
+        </label>
+        <div class="col-md-10">
+            @*<div class="col-md-8 text-left">*@
+                <input type="text" id="LV_EMAIL" name="LV_EMAIL" placeholder="Email" class="form-control" />
+            @*</div>*@
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.TT_ID, "TT_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TT_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TT_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <label class="control-label col-md-2 text-right">
+            TT :
+        </label>
+        <div class="col-md-10">
+            <div class="col-md-2 text-left">
+                <input type="text" id="TT_ID" name="TT_ID" placeholder="TT.Code" class="form-control" />
+            </div>
+            <div class="col-md-4 text-left">
+                <input type="text" id="TTDesc" name="TTDesc" placeholder="TT.Desc" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2 text-right">
+            Date From :
+        </label>
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.LV_DT_FROM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LV_DT_FROM, "", new { @class = "text-danger" })*@
+            <input type="text" id="LV_DT_FROM" name="LV_DT_FROM"
+                   placeholder="Date From"
+                   class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 text-right">
+            Date To :
+        </label>
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.LV_DT_TO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LV_DT_TO, "", new { @class = "text-danger" })*@
+            <input type="text" id="LV_DT_TO" name="LV_DT_TO"
+                   placeholder="Date To"
+                   class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+    <div class="form-group">
+        @if (ViewBag.Message != null)
+        {
+        <div class="error">@ViewBag.Message</div>
+        }
+    </div>
+</div>
+}
+
+
+
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('input[id$=LV_DOC_DATE]').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1950:2025",
+                buttonImageOnly: true
+            });
+        });
+        $(document).ready(function () {
+            $('input[id$=LV_DT_FROM]').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1950:2025",
+                buttonImageOnly: true
+            });
+        });
+        $(document).ready(function () {
+            $('input[id$=LV_DT_TO]').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1950:2025",
+                buttonImageOnly: true
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#EMP_ID").autocomplete({
+                source: '/AngApp/Help/GetEmployee',
+                select: function (event, ui) {
+                    //set tagids to save
+                    $("#EMP_ID").val(ui.item.id);
+                    $("#EM_NAME").val(ui.item.desc);
+                    //Tags for display
+                    //this.value = ui.item.id;
+                    return false;
+                }
+            });
+
+            $("#EM_NAME").autocomplete({
+                source: '/AngApp/Help/GetEmployee',
+                select: function (event, ui) {
+                    //set tagids to save
+                    $("#EM_NAME").val(ui.item.desc);
+                    $("#EMP_ID").val(ui.item.id);
+                    //Tags for display
+                    //this.value = ui.item.id;
+                    return false;
+                }
+            });
+
+            $("#TT_ID").autocomplete({
+                source: '/AngApp/Help/GetTTLve',
+                select: function (event, ui) {
+                    //set tagids to save
+                    $("#TT_ID").val(ui.item.id);
+                    $("#TTDesc").val(ui.item.desc);
+                    //Tags for display
+                    //this.value = ui.item.id;
+                    return false;
+                }
+            });
+
+            $("#TTDesc").autocomplete({
+                source: '/AngApp/Help/GetTTLve',
+                select: function (event, ui) {
+                    //set tagids to save
+                    $("#TT_ID").val(ui.item.id);
+                    $("#TTDesc").val(ui.item.desc);
+                    //Tags for display
+                    //this.value = ui.item.desc;
+                    return false;
+                }
+            });
+
+        });
+
+
+
+    </script>
+    <script src="~/Scripts/Validation.js"></script>
+
+}

@@ -1,0 +1,385 @@
+﻿@using Telerik.Web.Mvc.UI;
+@model AngApp.Models.UserClass
+@*@model IEnumerable<AngAppSAL>*@
+@{
+    ViewBag.Title = "Employee Registration Form";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+    //WebGrid grid = new WebGrid(ViewBag.Salary);
+
+}
+@*<Q></Q>dr*@
+@*Layout = "~/Views/Shared/_Layout.cshtml";*@
+
+<link href="~/Content/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<style type="text/css">
+    .bs-example {
+        margin: 20px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        $("#EM_COUNTRY").autocomplete({
+            //source:'@Url.Action("GetCountries")'
+            source: '/Home/GetCountries',
+            select: function (event, ui) {
+                //set tagids to save
+                $("#EM_COUNTRY").val(ui.item.id);
+
+                //Tags for display
+                this.value = ui.item.id;
+                return false;
+            }
+        });
+
+        $("#EM_DEPT").autocomplete({
+            @*source:'@Url.Action("GetDepartments")'*@
+            source: '/Home/GetDepartments',
+            select: function (event, ui) {
+                //set tagids to save
+                $("#EM_DEPT").val(ui.item.id);
+
+                //Tags for display
+                this.value = ui.item.id;
+                return false;
+            }
+        });
+
+        $("#EM_DESG").autocomplete({
+            source: '/Home/GetDesignations',
+            select: function (event, ui) {
+                //set tagids to save
+                $("#EM_DESG").val(ui.item.id);
+
+                //Tags for display
+                this.value = ui.item.id;
+                return false;
+            }
+    });
+    });
+
+</script>
+
+<script>
+    $('form').attr('autocomplete', 'off');
+</script>
+
+<div class="form-body">
+    @*<h2>Employee Registration Form</h2>*@
+
+    @using (Html.BeginForm("EmployeeSave", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-6">
+                        @*<div class="form-group">*@
+                        @Html.LabelFor(model => model.EM_PHOTO, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @*<div class="col-md-10">*@
+                    </div>
+                    <div class="col col-lg-2">
+                        <input type="file" name="file" onchange="readURL(this);" />
+                        @*@Html.ValidationMessageFor(model => model.EM_PHOTO, "", new { @class = "text-danger" })*@
+                        @*</div>
+                            </div>*@
+                    </div>
+                    <div class="col col-lg-6">
+                        <img id="blah" alt="Photo" style="width:200px;height:200px" src="~/Files/Images/NoImage.jpg">
+                    </div>
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.EM_CODE, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EM_CODE, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.EM_CODE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EM_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EM_NAME, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.EM_NAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EM_LASTNAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EM_LASTNAME, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.EM_LASTNAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="bs-example">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#Personnel">Personnel</a></li>
+                    <li><a data-toggle="tab" href="#Address">Address</a></li>
+                    <li><a data-toggle="tab" href="#Salary">Salary</a></li>
+                    <li><a data-toggle="tab" href="#Timesheet">Timesheet</a></li>
+                    <li><a data-toggle="tab" href="#Benefit">Benefit</a></li>
+                    <li><a data-toggle="tab" href="#Login">Login</a></li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a data-toggle="tab" href="#dropdown1">Dropdown1</a></li>
+                            <li><a data-toggle="tab" href="#dropdown2">Dropdown2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="Personnel" class="tab-pane fade in active">
+                        @*<h3>Personnel</h3>*@
+                        <div>
+                            @*<h4>UserClass</h4>*@
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_DOB, htmlAttributes: new { @class = "control-label col-md-2 datepicker" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_DOB, new { htmlAttributes = new { @class = "datepicker", autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.EM_DOB, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_GEN, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.Label("Male")
+                                    @*<input type="radio" id="@model.EM_GEN" name="Gender" value="M" />*@
+                                    @*@Html.RadioButtonFor(model => model.EM_GEN,"M")*@
+                                    @*@Html.RadioButton("EM_GEN", "M")*@
+                                    @Html.RadioButtonFor(model => model.EM_GEN, "M", new { id = "Option1", data_val = "true", data_val_required = "Please select one option." })
+                                    @Html.Label("FeMale")
+                                    @*<input type="radio" id="@model.EM_GEN" name="Gender" value="F" />*@
+                                    @*@Html.RadioButtonFor(model => model.EM_GEN, "F")*@
+                                    @*@Html.RadioButton("EM_GEN", "F")*@
+                                    @Html.RadioButtonFor(model => model.EM_GEN, "F", new { id = "Option2", data_val = "true", data_val_required = "Please select one option." })
+                                    @Html.ValidationMessageFor(model => model.EM_GEN, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_DEPT, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_DEPT, new { htmlAttributes = new { @class = "form-control" } })
+                                    @*@Html.TextBoxFor(model => model.EM_DEPT, null, new { id = "txtDepartment", htmlAttributes = new { @class = "form-control" }, autocomplete = "off" })*@
+                                    @Html.ValidationMessageFor(model => model.EM_DEPT, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_DESG, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_DESG, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EM_DESG, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_DOJ, htmlAttributes: new { @class = "control-label col-md-2 datepicker" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_DOJ, new { htmlAttributes = new { @class = "datepicker", autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.EM_DOJ, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_ACTIVE, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.EM_ACTIVE)
+                                        @Html.ValidationMessageFor(model => model.EM_ACTIVE, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Registration" class="btn btn-default" />
+                                    <input type="reset" value="Reset" class="btn btn-default" />
+                                </div>
+                            </div>
+                            @*@Html.ViewData["Message"]*@
+                            @*@if (!String.IsNullOrEmpty(ViewBag.Message))
+                                {
+                                    <span>@ViewBag.Message</span>
+                                }*@
+                        </div>
+                    </div>
+                    <div id="Address" class="tab-pane fade">
+                        @*<h3>Address</h3>*@
+                        <div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_ADDRESS, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_ADDRESS, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.EM_ADDRESS, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_COUNTRY, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_COUNTRY, new { htmlAttributes = new { @class = "form-control" } })
+                                    @*@Html.TextBoxFor(model => model.EM_COUNTRY, null, new { id = "txtCountry", htmlAttributes = new { @class = "form-control" }, autocomplete = "off" })*@
+                                    @Html.ValidationMessageFor(model => model.EM_COUNTRY, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_MAIL, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_MAIL, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.EM_MAIL, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_PHONE, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_PHONE, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.EM_PHONE, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Salary" class="tab-pane fade">
+                        @*<h3>Salary</h3>*@
+                        <p>
+                            @*@{
+                                Html.Telerik().Grid(ViewBag.Salary as System.Data.DataTable)
+                                    .Name("grdSalary")
+                                    .Columns(col =>
+                                    {
+                                        col.Bound(o => o.TT_ID).Width(100).Groupable(false);
+                                        col.Bound(o => o.TT_DESC).Width(300).Groupable(false);
+                                        col.Bound(o => o.SL_TYPE).Width(100).Groupable(false);
+                                    })
+                                    .Pageable(a => a.PageSize(10))
+                                    .Groupable()
+                                    .Render();
+                                }
+                                @(Html.Telerik().StyleSheetRegistrar().DefaultGroup(group=>group.Add("telerik.common.css").Add("telerik.windows7.css").Combined(true).Compress(true)))
+                                @(Html.Telerik().ScriptRegistrar())*@
+
+
+                        @*@Html.Grid(ViewBag.Salary as System.Data.DataTable).Columns(columns =>
+                       {
+                           columns.Add(foo => foo.TT_ID).Titled("Code").Sortable(true).Filterable(true);
+                           columns.Add(foo => foo.TT_DESC).Titled("Description").Sortable(true).Filterable(true);
+                           columns.Add(foo => foo.SL_TYPE).Titled("Type").Sortable(true).Filterable(true);
+                           columns.Add(foo => foo.SL_AMT).Sortable(true).Filterable(true).Titled("Amount");
+                           columns.Add()
+                                               .Encoded(false)
+                                               .Sanitized(false)
+                                               .SetWidth(30);
+                       }).WithPaging(10)*@
+                        </p>
+                    </div>
+                    <div id="Timesheet" class="tab-pane fade">
+                        @*<h3>Timesheet</h3>*@
+                        <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+                    </div>
+                    <div id="Benefit" class="tab-pane fade">
+                        @*<h3>Benefit</h3>*@
+                        <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+                    </div>
+                    <div id="Login" class="tab-pane fade">
+                        @*<h3>Login</h3>*@
+                        <div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_USERNAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_USERNAME, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.EM_USERNAME, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_PASSWORD, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.EM_PASSWORD, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EM_RE_PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EM_RE_PASSWORD, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.EM_RE_PASSWORD, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dropdown1" class="tab-pane fade">
+                        @*<h3>Dropdown 1</h3>*@
+                        <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+                    </div>
+                    <div id="dropdown2" class="tab-pane fade">
+                        @*<h3>Dropdown 2</h3>*@
+                        <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "EmployeeSave")
+    </div>*@
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    @*<script src="../Scripts/moment.js"></script>
+        <script src="../Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/bootstrap-datetimepicker.js"></script>*@
+    <script>
+            $(function () {
+                $(".datepicker").datepicker({
+                    dateFormat: "dd/mm/yy",
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "1950:2020",
+                    showOn: "both",
+                    buttonText: "<i class='fa fa-calendar'></i>"
+                });
+            });
+
+            $(function () {
+                var SuccessMsg = '@ViewBag.Message';
+                if (SuccessMsg !== '')
+                    alertify.success(SuccessMsg);
+            });
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah')
+                            .attr('src', e.target.result)
+                            .width(150)
+                            .height(200);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+    </script>
+    }
+

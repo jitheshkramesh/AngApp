@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OVODModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.VW_COUNTRY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_COUNTRY">
+    <Key>
+      <PropertyRef Name="CN_ID" />
+    </Key>
+    <Property Name="CN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CN_CD" Type="varchar" MaxLength="3" />
+    <Property Name="CN_NAME" Type="varchar" MaxLength="150" />
+    <Property Name="CN_CURR" Type="int" />
+    <Property Name="CN_COMPCD" Type="varchar" MaxLength="3" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.VW_EMPLOYEE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_EMPLOYEE">
+    <Key>
+      <PropertyRef Name="EM_ID" />
+    </Key>
+    <Property Name="EM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+    <Property Name="EM_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="EM_LASTNAME" Type="varchar" MaxLength="100" />
+    <Property Name="EM_ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="EMP_PHONE" Type="varchar" MaxLength="50" />
+    <Property Name="EM_GENDER" Type="varchar" MaxLength="10" />
+    <Property Name="EM_DOB" Type="datetime" />
+    <Property Name="EM_DOJ" Type="datetime" />
+    <Property Name="EM_DOBC" Type="varchar" MaxLength="10" />
+    <Property Name="EM_DOJC" Type="varchar" MaxLength="10" />
+    <Property Name="EM_PHOTO" Type="varchar" MaxLength="500" />
+    <Property Name="EM_COUNTRY" Type="varchar" MaxLength="100" />
+    <Property Name="EM_ACTIVE" Type="bit" />
+    <Property Name="COMPCD" Type="varchar" MaxLength="3" />
+    <Property Name="EM_GEN" Type="char" MaxLength="1" />
+    <Property Name="EM_MAIL" Type="varchar" MaxLength="150" />
+    <Property Name="EM_USERNAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="EM_PASSWORD" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityContainer Name="OVODModel1StoreContainer">
+    <EntitySet Name="VW_COUNTRY" EntityType="Self.VW_COUNTRY" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_COUNTRY].[CN_ID] AS [CN_ID], 
+    [VW_COUNTRY].[CN_CD] AS [CN_CD], 
+    [VW_COUNTRY].[CN_NAME] AS [CN_NAME], 
+    [VW_COUNTRY].[CN_CURR] AS [CN_CURR], 
+    [VW_COUNTRY].[CN_COMPCD] AS [CN_COMPCD]
+    FROM [dbo].[VW_COUNTRY] AS [VW_COUNTRY]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_EMPLOYEE" EntityType="Self.VW_EMPLOYEE" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_EMPLOYEE].[EM_ID] AS [EM_ID], 
+    [VW_EMPLOYEE].[EM_CODE] AS [EM_CODE], 
+    [VW_EMPLOYEE].[EM_NAME] AS [EM_NAME], 
+    [VW_EMPLOYEE].[EM_LASTNAME] AS [EM_LASTNAME], 
+    [VW_EMPLOYEE].[EM_ADDRESS] AS [EM_ADDRESS], 
+    [VW_EMPLOYEE].[EMP_PHONE] AS [EMP_PHONE], 
+    [VW_EMPLOYEE].[EM_GENDER] AS [EM_GENDER], 
+    [VW_EMPLOYEE].[EM_DOB] AS [EM_DOB], 
+    [VW_EMPLOYEE].[EM_DOJ] AS [EM_DOJ], 
+    [VW_EMPLOYEE].[EM_DOBC] AS [EM_DOBC], 
+    [VW_EMPLOYEE].[EM_DOJC] AS [EM_DOJC], 
+    [VW_EMPLOYEE].[EM_PHOTO] AS [EM_PHOTO], 
+    [VW_EMPLOYEE].[EM_COUNTRY] AS [EM_COUNTRY], 
+    [VW_EMPLOYEE].[EM_ACTIVE] AS [EM_ACTIVE], 
+    [VW_EMPLOYEE].[COMPCD] AS [COMPCD], 
+    [VW_EMPLOYEE].[EM_GEN] AS [EM_GEN], 
+    [VW_EMPLOYEE].[EM_MAIL] AS [EM_MAIL], 
+    [VW_EMPLOYEE].[EM_USERNAME] AS [EM_USERNAME], 
+    [VW_EMPLOYEE].[EM_PASSWORD] AS [EM_PASSWORD]
+    FROM [dbo].[VW_EMPLOYEE] AS [VW_EMPLOYEE]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

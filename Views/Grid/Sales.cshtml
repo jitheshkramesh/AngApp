@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Sales";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<title>Sales</title>*@
+    @*<style type="text/css">
+        .webGrid {
+            margin: 4px;
+            border-collapse: collapse;
+            width: 500px;
+            background-color: #B4CFC3;
+        }
+
+        .header {
+            background-color: #C1D4E6;
+            font-weight: bold;
+            color: #FFF;
+        }
+
+        .webGrid th, .webGrid td {
+            border: 1px solid #C0C0C0;
+            padding: 5px;
+        }
+
+        .alt {
+            background-color: #E4E9F5;
+            color: #000;
+        }
+
+        .gridHead a:hover {
+            text-decoration: underline;
+        }
+
+        .description {
+            width: auto;
+        }
+
+        .select {
+            background-color: #71857C;
+        }
+
+        .namewidth {
+            width: 450px;
+        }
+    </style>*@
+</head>
+<body>
+    <div>
+        Hide   Copy Code
+        <input type="button" value="File Upload"
+               onclick="window.location.href('@Url.Action(" FileUpload","Grid")')" />
+        <a href="@Url.Content("FileUpload")">File Uploader</a>
+        <input type="button" value="Forgot Password"
+               onclick="window.location.href('@Url.Action("SelectCategory","Grid")')" />
+        <a href="@Url.Content("~/Grid/SelectCategory")">Select Category</a>
+    </div>
+    <div>
+
+        @*<h2>Grid</h2>*@
+    @grid.GetHtml(
+
+    tableStyle: "table", // applying style on grid
+
+    fillEmptyRows: true,
+    //show empty row when there is only one record on page to it will display all empty rows there.
+    //headerStyle: "header", //applying style.
+
+    footerStyle: "grid-footer", //applying style.
+
+    mode: WebGridPagerModes.All, //paging to grid
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+
+    columns: new[]  // colums in grid
+    {
+        grid.Column("INV_NUM","Inv No"), //the model fields to display
+        grid.Column("INV_DATE","Date",
+        format: (item) => string.Format("{0:dd-MMM-yyyy}", item.INV_DATE) ),
+        grid.Column("LOC_CODE","Loc Code"),
+        grid.Column("LOC_NAME"),
+        grid.Column("CUST_NAME","Name",canSort:true,style:"namewidth"),
+        grid.Column("NETAMT"),
+        grid.Column(format: (item) => Html.ActionLink("Edit", "INV_NUM", new { id = item.INV_NUM })),
+        grid.Column("Action", format: (item) => Html.ActionLink((string)item.INV_NUM.ToString(), "dtg", new { id = item.INV_NUM }))
+
+   })
+    </div>
+    <div class="editorContainer">
+        @*@Html.DropDownList("SelectedEmployee",
+            new SelectList((System.Collections.IEnumerable)ViewData["bankDetails"], "bnk_code", "bnk_name"))*@
+    </div>
+</body>
+</html>
+

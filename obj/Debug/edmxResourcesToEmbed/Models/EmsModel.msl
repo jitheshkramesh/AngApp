@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EMSModelStoreContainer" CdmEntityContainer="EMSEntities">
+    <EntitySetMapping Name="EMPLOYEEs">
+      <EntityTypeMapping TypeName="EMSModel.EMPLOYEE">
+        <MappingFragment StoreEntitySet="EMPLOYEE">
+          <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+          <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+          <ScalarProperty Name="EM_NAME" ColumnName="EM_NAME" />
+          <ScalarProperty Name="EM_LASTNAME" ColumnName="EM_LASTNAME" />
+          <ScalarProperty Name="EM_ADDRESS" ColumnName="EM_ADDRESS" />
+          <ScalarProperty Name="EM_PHONE" ColumnName="EM_PHONE" />
+          <ScalarProperty Name="EM_GENDER" ColumnName="EM_GENDER" />
+          <ScalarProperty Name="EM_DOB" ColumnName="EM_DOB" />
+          <ScalarProperty Name="EM_DOJ" ColumnName="EM_DOJ" />
+          <ScalarProperty Name="EM_PHOTO" ColumnName="EM_PHOTO" />
+          <ScalarProperty Name="EM_COUNTRY" ColumnName="EM_COUNTRY" />
+          <ScalarProperty Name="EM_ACTIVE" ColumnName="EM_ACTIVE" />
+          <ScalarProperty Name="COMPCD" ColumnName="COMPCD" />
+          <ScalarProperty Name="EM_GEN" ColumnName="EM_GEN" />
+          <ScalarProperty Name="EM_MAIL" ColumnName="EM_MAIL" />
+          <ScalarProperty Name="EM_USERNAME" ColumnName="EM_USERNAME" />
+          <ScalarProperty Name="EM_PASSWORD" ColumnName="EM_PASSWORD" />
+          <ScalarProperty Name="EM_DEPT" ColumnName="EM_DEPT" />
+          <ScalarProperty Name="EM_DESG" ColumnName="EM_DESG" />
+          <ScalarProperty Name="EM_COMPCD" ColumnName="EM_COMPCD" />
+          <ScalarProperty Name="EM_LOCAL_ADDRESS" ColumnName="EM_LOCAL_ADDRESS" />
+          <ScalarProperty Name="EM_REFERENCE" ColumnName="EM_REFERENCE" />
+          <ScalarProperty Name="EM_OFFICIAL_MAIL" ColumnName="EM_OFFICIAL_MAIL" />
+          <ScalarProperty Name="EM_CAMP" ColumnName="EM_CAMP" />
+          <ScalarProperty Name="EM_GRADE" ColumnName="EM_GRADE" />
+          <ScalarProperty Name="EM_BANK_CODE" ColumnName="EM_BANK_CODE" />
+          <ScalarProperty Name="EM_BANK_ACCNO" ColumnName="EM_BANK_ACCNO" />
+          <ScalarProperty Name="EM_TYPE" ColumnName="EM_TYPE" />
+          <ScalarProperty Name="EM_PAY_TYPE" ColumnName="EM_PAY_TYPE" />
+          <ScalarProperty Name="EM_CATEGORY" ColumnName="EM_CATEGORY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPSALs">
+      <EntityTypeMapping TypeName="EMSModel.EMPSAL">
+        <MappingFragment StoreEntitySet="EMPSAL">
+          <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+          <ScalarProperty Name="SL_TYPE" ColumnName="SL_TYPE" />
+          <ScalarProperty Name="SL_AMT" ColumnName="SL_AMT" />
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+          <ScalarProperty Name="SL_ID" ColumnName="SL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

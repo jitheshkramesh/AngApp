@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@*<base href="/AngApp/">*@
+<h2>MVC Razor Page!</h2>
+@*<link href="~/Scripts/PaginationStyle.css" rel="stylesheet" />*@
+@*<my-app>Angular Loading...</my-app>*@
+
+
+@*commented 2019/01/27*@
+@*<app-root>Angular Loading...</app-root>*@
+@*<conv-root>Angular Loading...</conv-root>*@
+
+
+
+@using (Html.BeginForm("AddNumber", "Home"))
+{
+    <div>
+        First Number :
+    </div><div>
+        @Html.TextBox("txtNum1", null, new { @class = "form-control" })
+    </div>
+    <div>
+        Second Number :
+    </div><div>
+        @Html.TextBox("txtNum2", null, new { @class = "form-control" })
+    </div>
+    <div>
+        <input type="submit" value="AddNumber" />
+    </div>
+}
+
+
+
+
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6c15cd6d21bf4b56a1971c8f622447c5" Name="Diagram1" ZoomLevel="52">
+        <EntityTypeShape EntityType="OVODModel.VW_COUNTRY1" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OVODModel.TTMAST" Width="1.5" PointX="5.375" PointY="0.5" />
+        <EntityTypeShape EntityType="OVODModel.DEPARTMENT" Width="1.5" PointX="3.625" PointY="0.5" />
+        <EntityTypeShape EntityType="OVODModel.VW_EMPLOYEE" Width="1.5" PointX="7.5" PointY="2.625" />
+        <EntityTypeShape EntityType="OVODModel.DESIGNATION" Width="1.5" PointX="0.625" PointY="3.125" />
+        <EntityTypeShape EntityType="OVODModel.EMPLOYEESAL" Width="1.5" PointX="2.125" PointY="0.5" />
+        <EntityTypeShape EntityType="OVODModel.EMPLOYEE" Width="1.5" PointX="3.625" PointY="2.25" />
+        <EntityTypeShape EntityType="OVODModel.EMPSAL" Width="1.5" PointX="9.875" PointY="0.5" />
+        <AssociationConnector Association="OVODModel.FK_EMPSAL_EMPLOYEE" />
+        <AssociationConnector Association="OVODModel.FK_EMPSAL_EMPSAL" />
+        <EntityTypeShape EntityType="OVODModel.VW_HD_HRPAYADJ" Width="1.5" PointX="0.5" PointY="4.25" />
+        <EntityTypeShape EntityType="OVODModel.VW_DT_HRPAYADJ" Width="1.5" PointX="4.25" PointY="3.875" />
+        <EntityTypeShape EntityType="OVODModel.DT_INVOICE" Width="1.5" PointX="7.5" PointY="3.875" />
+        <EntityTypeShape EntityType="OVODModel.HD_INVOICE" Width="1.5" PointX="5.875" PointY="3.875" />
+        <AssociationConnector Association="OVODModel.FK_DT_INVOICE_HD_INVOICE" />
+        <EntityTypeShape EntityType="OVODModel.DT_HRPAYADJ" Width="1.5" PointX="7.625" PointY="0.75" />
+        <EntityTypeShape EntityType="OVODModel.HD_HRPAYADJ" Width="1.5" PointX="2.5" PointY="3.875" />
+        <AssociationConnector Association="OVODModel.FK_HD_HRPAYADJ_DT_HRPAYADJ" />
+        <AssociationConnector Association="OVODModel.FK_TTMAST_DT_HRPAYADJ" />
+        <EntityTypeShape EntityType="OVODModel.Rak" Width="1.5" PointX="8.625" PointY="9" />
+        <EntityTypeShape EntityType="OVODModel.Shelf" Width="1.5" PointX="6.375" PointY="8.875" />
+        <AssociationConnector Association="OVODModel.FK_Rak_Shelf" />
+        <AssociationConnector Association="OVODModel.FK_Shelf_Shelf" />
+        <EntityTypeShape EntityType="OVODModel.Emp_Doc_History" Width="1.5" PointX="8" PointY="12.125" />
+        <AssociationConnector Association="OVODModel.FK_Emp_Doc_History_TTMAST" />
+        <EntityTypeShape EntityType="OVODModel.ANG_EMPLOYEE" Width="1.5" PointX="3.375" PointY="7" />
+        <AssociationConnector Association="OVODModel.FK_Emp_Doc_History_ANG_EMPLOYEE" />
+        <EntityTypeShape EntityType="OVODModel.Doc_History" Width="1.5" PointX="10.625" PointY="4" />
+        <AssociationConnector Association="OVODModel.FK_Doc_History_ANG_EMPLOYEE" />
+        <AssociationConnector Association="OVODModel.FK_Doc_History_TTMAST" />
+        <EntityTypeShape EntityType="OVODModel.DIAGNOSI" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="OVODModel.DRUG" Width="1.5" PointX="0.75" PointY="6.75" />
+        <AssociationConnector Association="OVODModel.FK_DRUG_DIAGNOSIS" />
+        <EntityTypeShape EntityType="OVODModel.Item" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="OVODModel.DT_LEAVE" Width="1.5" PointX="7.75" PointY="16.25" />
+        <AssociationConnector Association="OVODModel.FK_DT_LEAVE_DT_LEAVE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

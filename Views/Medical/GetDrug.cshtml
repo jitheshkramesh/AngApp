@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AngApp.DRUG>
+
+@{
+    ViewBag.Title = "Drug";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+}
+
+@*<h2>Drug</h2>*@
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CODE)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.DRUG1)*@
+            <text>DRUG</text>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CODE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DRUG1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "DrugDetails", new { id=item.ID }) 
+            @*|
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })*@
+        </td>
+    </tr>
+}
+
+</table>

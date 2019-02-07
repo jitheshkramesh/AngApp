@@ -1,0 +1,391 @@
+﻿@model IEnumerable<AngApp.HD_HRPAYADJ>
+
+@{
+    ViewBag.Title = "Payroll Adjustment";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+}
+
+<link href="~/Content/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+<style>
+    .margin-top-05 {
+        margin-top: 0.5em;
+    }
+
+    .margin-top-10 {
+        margin-top: 1.0em;
+    }
+
+    .margin-top-15 {
+        margin-top: 1.5em;
+    }
+
+    .margin-top-20 {
+        margin-top: 2.0em;
+    }
+
+    .margin-top-25 {
+        margin-top: 2.5em;
+    }
+
+    .margin-top-30 {
+        margin-top: 3.0em;
+    }
+</style>
+
+<form id="NewLoanForm">
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <input type="hidden" id="PA_Id" />
+            <div class="form-group">
+                <div class="container">
+                    <div class="row">
+                        <label class="control-label col-md-2">
+                            Doc.No. :
+                        </label>
+                        <div class="col-md-2">
+                            <input type="text" id="PA_DOCNO" name="PA_DOCNO" value="@ViewBag.DocNo" placeholder="Doc.No" class="form-control" />
+                        </div>
+                        <label class="control-label col-md-2">
+                            Doc.Date :
+                        </label>
+                        <div class="col-md-2">
+                            @*<input type="text" id="PA_DOCDATE" name="PA_DOCDATE"
+                                value="@ViewBag.DocDate" placeholder="Doc.Date"
+                                class="form-control datepicker2" />*@
+                            <input type="text" id="PA_DOCDATE" name="PA_DOCDATE"
+                                   value="@ViewBag.DocDate" placeholder="Doc.Date"
+                                   class="form-control" />
+                        </div>
+                        @*<div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>*@
+                    </div>
+                    <div class="row margin-top-05">
+                        <label class="control-label col-md-2">
+                            Month :
+                        </label>
+                        <div class="col-md-2">
+                            <input type="text" id="PA_MONTH" name="PA_MONTH" value="@ViewBag.Month" placeholder="Month" class="form-control" />
+                        </div>
+                        <label class="control-label col-md-2">
+                            Year :
+                        </label>
+                        <div class="col-md-2">
+                            <input type="text" id="PA_YEAR" name="PA_YEAR" value="@ViewBag.Year" placeholder="Year" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row margin-top-05">
+                        <label class="control-label col-md-2">
+                            Header :
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" id="PA_HEADER" name="PA_HEADER" value="@ViewBag.Header" placeholder="Header" class="form-control" />
+                        </div>
+                        <label class="control-label col-md-2">
+                            Title :
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" id="PA_TITLE" name="PA_TITLE" value="@ViewBag.PATitle" placeholder="Title" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*salary Details*@
+        @*<h5 style="margin-top:10px;color:#ff6347">Salary Details</h5>*@
+        <hr />
+        <div class="form-horizontal">
+            <input type="hidden" id="salaryId" />
+            <div class="form-group">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 ">
+                            <label class="control-label col-md-2 text-right">
+                                Employee :
+                            </label>
+                            <div class="col-md-2 text-left">
+                                <input type="text" id="EM_ID" name="EM_ID" placeholder="Emp.Code" class="form-control" />
+                            </div>
+                            <div class="col-md-4 text-left">
+                                <input type="text" id="EM_NAME" name="EM_NAME" placeholder="Emp.Name" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10 margin-top-05">
+                            <label class="control-label col-md-2 text-right">
+                                TT :
+                            </label>
+                            <div class="col-md-2 text-left">
+                                <input type="text" id="TT_ID" name="TT_ID" placeholder="TT.Code" class="form-control" />
+                            </div>
+                            <div class="col-md-4 text-left">
+                                <input type="text" id="TTDesc" name="TTDesc" placeholder="TT.Desc" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid row margin-top-05">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-3  text-right">
+                                        <label class="control-label  text-right">
+                                            Quantity :
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-3 text-left">
+                                        <input type="number" id="PAD_QTY" name="PAD_QTY" placeholder="Quantity" class="form-control" />
+                                    </div>
+                                    <div class="col-xs-3 text-right">
+                                        <label class="control-label  text-right">
+                                            Rate :
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-3 text-left">
+                                        <input type="number" id="PAD_RATE" name="PAD_RATE" placeholder="Rate" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-3 text-right">
+                                        <label class="control-label text-right">
+                                            Remarks :
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <input type="text" id="PAD_REMARKS" name="PAD_REMARKS" placeholder="Remarks" class="form-control" />
+                                    </div>
+                                    <div class="col-xs-3 text-left">
+                                        <a id="addToList" class="btn btn-primary">Add To List</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <table id="detailsTable" class="table">
+                <thead>
+                    <tr>
+                        <th style="width:5%">Emp.Code</th>
+                        <th style="width:30%">Emp.Name</th>
+                        <th style="width:5%">TT.Code</th>
+                        <th style="width:20%">TT.Desc.</th>
+                        <th style="width:5%" class="text-right">Quantity</th>
+                        <th style="width:5%" class="text-right">Rate</th>
+                        <th style="width:30%" class="text-left">Remarks</th>
+                        <th style="width:5%"></th>
+                    </tr>
+
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="saveData" type="submit" class="btn btn-danger">Save</button>
+    </div>
+    
+      </form>
+
+
+      @section scripts
+    {
+
+
+<script type="text/javascript">
+              $(document).ready(function () {
+                  $('input[id$=PA_DOCDATE]').datepicker({
+                      dateFormat: "dd/mm/yy",
+                      changeMonth: true,
+                      changeYear: true,
+                      yearRange: "1950:2020",
+                      buttonImageOnly: true
+                  });
+              });
+
+               //Add Multiple salary.
+    $("#addToList").click(function (e) {
+        e.preventDefault();
+
+        if ($.trim($("#EM_ID").val()) == "" || $.trim($("#EM_NAME").val()) == "" || $.trim($("#TT_ID").val()) == "" || $.trim($("#TTDesc").val()) == "" || $.trim($("#PAD_QTY").val()) == "" || $.trim($("#PAD_RATE").val()) == "") return;
+
+        //var EM_ID = $("#EM_ID").val(),
+        //    EM_NAME = $("#EM_NAME").val(),
+        //    TT_ID = $("#TT_ID").val(),
+        //    TTDesc = $("#TTDesc").val(),
+        //    PAD_QTY = $("#PAD_QTY").val(),
+        //    PAD_RATE = $("#PAD_RATE").val(),
+        //    PAD_REMARKS = $("#PAD_REMARKS").val(),
+        var row = document.getElementById("detailsTable").insertRow(0);
+        row.insertCell(0).innerHTML = $("#EM_ID").val();
+        row.insertCell(1).innerHTML = $("#EM_NAME").val();
+        row.insertCell(2).innerHTML = $("#TT_ID").val();
+        row.insertCell(3).innerHTML = $("#TTDesc").val();
+        row.insertCell(4).innerHTML = $("#PAD_QTY").val();
+        row.insertCell(5).innerHTML = $("#PAD_RATE").val();
+        row.insertCell(6).innerHTML = $("#PAD_REMARKS").val();
+        detailsTableBody.append(row);
+        clearItem();
+    });
+
+              //After Add A New salary In The List, Clear Clean The Form For Add More salary.
+              function clearItem() {
+                  $("#EM_ID").val('');
+                  $("#EM_NAME").val('');
+                  $("#TT_ID").val('');
+                  $("#TTDesc").val('');
+                  $("#PAD_QTY").val('');
+                  $("#PAD_RATE").val('');
+                  $("#PAD_REMARKS").val('');
+              }
+
+              // After Add A New salary In The List, If You Want, You Can Remove It.
+              $(document).on('click', 'a.deleteItem', function (e) {
+                  e.preventDefault();
+                  var $self = $(this);
+                  if ($(this).attr('data-itemId') == "0") {
+                      $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800, function () {
+                          $(this).remove();
+                      });
+                  }
+              });
+
+              //After Click Save Button Pass All Data View To Controller For Save Database
+              function saveData(data) {
+                  return $.ajax({
+                      contentType: 'application/json; charset=utf-8',
+                      dataType: 'json',
+                      type: 'POST',
+                      url: "/Trans/PayadjSave",
+                      data: data,
+                      success: function (result) {
+                          alert(result);
+                          location.reload();
+                      },
+                      error: function () {
+                          alert("Error!");
+                      }
+                  });
+              }
+
+              //Collect Multiple salary List For Pass To Controller
+              $("#saveData").click(function (e) {
+                  e.preventDefault();
+
+                  var salaryArr = [];
+                  salaryArr.length = 0;
+
+                  $.each($("#detailsTable tbody tr"), function () {
+                      salaryArr.push({
+                          EM_ID: $(this).find('td:eq(0)').html(),
+                          EM_NAME: $(this).find('td:eq(1)').html(),
+                          TT_ID: $(this).find('td:eq(2)').html(),
+                          TTDesc: $(this).find('td:eq(3)').html(),
+                          PAD_QTY: $(this).find('td:eq(4)').html(),
+                          PAD_RATE: $(this).find('td:eq(5)').html(),
+                          PAD_REMARKS: $(this).find('td:eq(6)').html()
+                      });
+                  });
+
+
+                  var data = JSON.stringify({
+                      PA_DOCNO: $("#PA_DOCNO").val(),
+                      PA_DOCDATE: $("#PA_DOCDATE").val(),
+                      PA_HEADER: $("#PA_HEADER").val(),
+                      PA_TITLE: $("#PA_TITLE").val(),
+                      PA_MONTH: $("#PA_MONTH").val(),
+                      PA_YEAR: $("#PA_YEAR").val(),
+                      det: salaryArr
+                  });
+
+                  $.when(saveData(data)).then(function (response) {
+                      console.log(response);
+                  }).fail(function (err) {
+                      console.log(err);
+                  });
+              });
+
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#EM_ID").autocomplete({
+            source: '/Help/GetEmployee',
+            select: function (event, ui) {
+                //set tagids to save
+                $("#EM_ID").val(ui.item.id);
+                $("#EM_NAME").val(ui.item.desc);
+                //Tags for display
+                //this.value = ui.item.id;
+                return false;
+            }
+        });
+
+        $("#EM_NAME").autocomplete({
+            source: '/Help/GetEmployee',
+            select: function (event, ui) {
+                //set tagids to save
+                $("#EM_NAME").val(ui.item.desc);
+                $("#EM_ID").val(ui.item.id);
+                //Tags for display
+                //this.value = ui.item.id;
+                return false;
+            }
+        });
+
+        $("#TT_ID").autocomplete({
+            source: '/Help/GetTT',
+            select: function (event, ui) {
+                //set tagids to save
+                $("#TT_ID").val(ui.item.id);
+                $("#TTDesc").val(ui.item.desc);
+                //Tags for display
+                //this.value = ui.item.id;
+                return false;
+            }
+        });
+
+        $("#TTDesc").autocomplete({
+            source: '/Help/GetTT',
+            select: function (event, ui) {
+                //set tagids to save
+                $("#TT_ID").val(ui.item.id);
+                $("#TTDesc").val(ui.item.desc);
+                //Tags for display
+                //this.value = ui.item.desc;
+                return false;
+            }
+        });
+
+    });
+
+
+
+</script>
+
+
+
+
+                        });
+        
+
+

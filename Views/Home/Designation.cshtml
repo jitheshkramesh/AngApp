@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AngApp.Models.EmpDesignation>
+
+@{
+    ViewBag.Title = "Designation";
+    Layout = "~/Views/Shared/Theme.cshtml";
+}
+
+<h2>Designation</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DG_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DG_CD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DG_DESCRIPTION)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DG_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DG_CD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DG_DESCRIPTION)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

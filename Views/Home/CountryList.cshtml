@@ -1,0 +1,56 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Country List";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+    //WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+@model IEnumerable<AngApp.Models.CodeDb.Country>
+@using GridMvc.Html
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")" type="text/javascript"></script>
+@*<script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="@Url.Content("~/Content/Css/bootstrap.min.css")" rel="stylesheet" type="text/css" />*@
+
+<h2>CountryList</h2>
+<div>
+    @*<style type="text/css">
+            .table {
+                margin: 4px;
+                border-collapse: collapse;
+                width: 300px;
+                color: #ffffff;
+            }
+
+            .header {
+                background-color: gray;
+                font-weight: bold;
+                color: #ffffff;
+            }
+
+            .table th, .table td {
+                border: 1px solid black;
+                padding: 5px;
+                color: #ffffff;
+            }
+
+            .colmnwidth {
+                width: 250px;
+            }
+        </style>*@
+
+    @Html.Grid(Model).Columns(columns =>
+{
+columns.Add(foo => foo.CN_CD).Titled("Country Code").Sortable(true).Filterable(true);
+columns.Add(foo => foo.CN_NAME).Sortable(true).Filterable(true).Titled("Name");
+columns.Add()
+                        .Encoded(false)
+                        .Sanitized(false)
+                        .SetWidth(30)
+                        .RenderValueAs(foo => @<button type="button" class="edit-book display-mode" id="foo.CN_CD">edit</button>);
+
+    }).WithPaging(10)
+
+
+</div>
+

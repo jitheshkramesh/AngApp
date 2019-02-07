@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="EM_ID" />
+    </Key>
+    <Property Name="EM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EM_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EM_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EM_LASTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EM_ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="EM_PHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EM_GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EM_DOB" Type="DateTime" Precision="3" />
+    <Property Name="EM_DOJ" Type="DateTime" Precision="3" />
+    <Property Name="EM_PHOTO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="EM_COUNTRY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EM_ACTIVE" Type="Boolean" />
+    <Property Name="COMPCD" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="EM_GEN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="EM_MAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="EM_USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EM_PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EM_DEPT" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="EM_DESG" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="EM_COMPCD" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="EM_LOCAL_ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="EM_REFERENCE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="EM_OFFICIAL_MAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="EM_CAMP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EM_GRADE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="EM_BANK_CODE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="EM_BANK_ACCNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EM_TYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="EM_PAY_TYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="EM_CATEGORY" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EMPSALs" Relationship="EMSModel.FK_EMPSAL_EMPLOYEE" FromRole="EMPLOYEE" ToRole="EMPSAL" />
+  </EntityType>
+  <EntityContainer Name="EMSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+    <EntitySet Name="EMPSALs" EntityType="EMSModel.EMPSAL" />
+    <AssociationSet Name="FK_EMPSAL_EMPLOYEE" Association="EMSModel.FK_EMPSAL_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="EMPSAL" EntitySet="EMPSALs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EMPSAL">
+    <Key>
+      <PropertyRef Name="SL_ID" />
+    </Key>
+    <Property Name="SL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EM_ID" Type="Int32" />
+    <Property Name="TT_ID" Type="Int32" />
+    <Property Name="SL_AMT" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="SL_TYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="EM_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="EMSModel.FK_EMPSAL_EMPLOYEE" FromRole="EMPSAL" ToRole="EMPLOYEE" />
+  </EntityType>
+  <Association Name="FK_EMPSAL_EMPLOYEE">
+    <End Type="EMSModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="0..1" />
+    <End Type="EMSModel.EMPSAL" Role="EMPSAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="EM_ID" />
+      </Principal>
+      <Dependent Role="EMPSAL">
+        <PropertyRef Name="EM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,311 @@
+﻿@model IEnumerable<AngApp.EMPLOYEE>
+
+@{
+    ViewBag.Title = "MasterEmployeeDetails";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+}
+
+<link href="~/Content/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+
+<style>
+    .modal-dialog {
+        position: absolute;
+        top: 50% !important;
+        transform: translate(0, -50%) !important;
+        -ms-transform: translate(0, -50%) !important;
+        -webkit-transform: translate(0, -50%) !important;
+        margin: auto 5%;
+        margin-left: -10%;
+        width: 70%;
+        height: 80%;
+    }
+
+    .modal-content {
+        min-height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .modal-body {
+        position: absolute;
+        top: 45px; /** height of header **/
+        bottom: 45px; /** height of footer **/
+        left: 0;
+        right: 0;
+        overflow-y: auto;
+    }
+
+    .modal-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            @*<h2 class="panel-title pull-left" style="margin-left:10px;">
+                    <strong>salary Details</strong>
+                </h2>*@
+            <button style="margin-right:10px" class="btn btn-primary pull-left" onclick="addNewsalary()">New Employee</button>
+        </div>
+    </div>
+
+    @*Receive All Database Data From Controller And Display Those Data In Client Side*@
+
+    @if (Model.Count() != 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="panel-body">
+                <table class="table table-striped table-responsive">
+                    <tbody>
+                        <tr>
+                            <td>Employee Code : @item.EM_CODE </td>
+                            <td>Name : @item.EM_NAME </td>
+                            @*<td>Date Of Join : @item.EM_DOJ</td>*@
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <table class="table table-bsalaryed">
+                                    <tbody>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>TYPE</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                        @{
+                                            var totalSalary = 0;
+                                        }
+                                        @foreach (var salary in item.EMPSALs)
+                                        {
+                                            <tr>
+                                                <td>@salary.SL_ID</td>
+                                                <td>@salary.SL_TYPE</td>
+                                                <td>@salary.SL_AMT</td>
+                                            </tr>
+                                            totalSalary = totalSalary + @Convert.ToInt32(salary.SL_AMT);
+                                        }
+                                    </tbody>
+                                </table>
+                                <span class="pull-right" style="margin-right:100px;"><strong>Total Salary :  </strong> @totalSalary</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="panel-body">
+            <h3 style="color:red;">Empty!</h3>
+        </div>
+
+    }
+</div>
+
+@*Desing Bootdtrap Modal With salary Form*@
+
+<div class="modal fade" id="newEmployeeModel">
+    <div class="modal-dialog modal-lg" style=" width: 800px !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4>Add New Employee</h4>
+            </div>
+            <form id="NewsalaryForm">
+                <div class="modal-body">
+                    @*Customer Details*@
+                    <h5 style="color:#ff6347">Employee Details</h5>
+                    <hr />
+                    <div class="form-horizontal">
+                        <input type="hidden" id="CustomerId" />
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                Code
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="code" name="code" placeholder="Employee Code" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Name
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="name" name="name" placeholder="Employee Name" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    @*salary Details*@
+                    <h5 style="margin-top:10px;color:#ff6347">Salary Details</h5>
+                    <hr />
+                    <div class="form-horizontal">
+                        <input type="hidden" id="salaryId" />
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                TT Id
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="TT_ID" name="TT_ID" placeholder="Id" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Type
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" id="SL_TYPE" name="SL_TYPE" placeholder="Type" class="form-control" />
+                            </div>
+                            <label class="control-label col-md-2">
+                                Amount
+                            </label>
+                            <div class="col-md-4">
+                                <input type="number" id="SL_AMT" name="SL_AMT" placeholder="Amount" class="form-control" />
+                            </div>
+                            <div class="col-md-2 col-lg-offset-4">
+                                <a id="addToList" class="btn btn-primary">Add To List</a>
+                            </div>
+                        </div>
+
+                        <table id="detailsTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width:30%">TT Id</th>
+                                    <th style="width:20%">Type</th>
+                                    <th style="width:25%" class="text-right">Amount</th>
+                                    <th style="width:10%"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="savesalary" type="submit" class="btn btn-danger">Save Employee</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        //Show Modal.
+        function addNewsalary() {
+            $("#newEmployeeModel").modal();
+        }
+        //Add Multiple salary.
+        $("#addToList").click(function (e) {
+            e.preventDefault();
+
+            if ($.trim($("#TT_ID").val()) == "" || $.trim($("#SL_TYPE").val()) == "" || $.trim($("#SL_AMT").val()) == "") return;
+
+            var TT_ID = $("#TT_ID").val(),
+                SL_TYPE = $("#SL_TYPE").val(),
+                SL_AMT = $("#SL_AMT").val(),
+                detailsTableBody = $("#detailsTable tbody");
+
+            var SalItem = '<tr><td>' + TT_ID + '</td><td>' + SL_TYPE + '</td><td>' + (parseFloat(SL_AMT)) + '</td><td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td></tr>';
+            detailsTableBody.append(SalItem);
+            clearItem();
+        });
+        //After Add A New salary In The List, Clear Clean The Form For Add More salary.
+        function clearItem() {
+            $("#TT_ID").val('');
+            $("#SL_TYPE").val('');
+            $("#SL_AMT").val('');
+        }
+        // After Add A New salary In The List, If You Want, You Can Remove It.
+        $(document).on('click', 'a.deleteItem', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            if ($(this).attr('data-itemId') == "0") {
+                $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800, function () {
+                    $(this).remove();
+                });
+            }
+        });
+        //After Click Save Button Pass All Data View To Controller For Save Database
+        function savesalary(data) {
+            return $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'POST',
+                url: "/Home/MastEmpDetSave",
+                data: data,
+                success: function (result) {
+                    alert(result);
+                    location.reload();
+                },
+                error: function () {
+                    alert("Error!");
+                }
+            });
+        }
+        //Collect Multiple salary List For Pass To Controller
+        $("#savesalary").click(function (e) {
+            e.preventDefault();
+
+            var salaryArr = [];
+            salaryArr.length = 0;
+
+            $.each($("#detailsTable tbody tr"), function () {
+                salaryArr.push({
+                    TT_ID: $(this).find('td:eq(0)').html(),
+                    SL_TYPE: $(this).find('td:eq(1)').html(),
+                    SL_AMT: $(this).find('td:eq(2)').html()
+                });
+            });
+
+
+            var data = JSON.stringify({
+                code: $("#code").val(),
+                Name: $("#name").val(),
+                salary: salaryArr
+            });
+
+            $.when(savesalary(data)).then(function (response) {
+                console.log(response);
+            }).fail(function (err) {
+                console.log(err);
+            });
+        });
+    </script>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#code").autocomplete({
+            source: '/Help/GetEmployeeCode',
+            select: function (event, ui) {
+                //set tagids to save
+                $("#code").val(ui.item.id);
+                $("#name").val(ui.item.value);
+                //Tags for display
+                this.value = ui.item.id;
+                return false;
+            }
+        });       
+
+        $("#name").autocomplete({
+            source: '/Help/GetEmployeeName',
+            select: function (event, ui) {
+                //set tagids to save
+                $("#name").val(ui.item.id);
+                $("#code").val(ui.item.value);
+                //Tags for display
+                this.value = ui.item.id;
+                return false;
+            }
+        });
+
+    });
+
+</script>

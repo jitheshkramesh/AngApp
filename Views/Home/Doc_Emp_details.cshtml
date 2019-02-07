@@ -1,0 +1,252 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model AngApp.ViewModel.Doc_Emp_DetailsVM
+@{
+    ViewBag.Title = "Employee Document Details";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+}
+<style>
+    .textWidth {
+        width: 200px;
+    }
+    .txtColSpan {
+    margin-top:5px;
+    }
+</style>
+@*<h2>Doc_Emp_details</h2>*@
+
+@using (Html.BeginForm("Doc_Emp_details", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>Emp_Doc_History</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.emp_id, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.emp_id, new { htmlAttributes = new { @class = "form-control textWidth" } })
+                    @Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.emp_name, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.emp_name, new { htmlAttributes = new { @class = "form-control textWidth" } })
+                </div>
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4 txtColSpan" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control textWidth txtColSpan" } })
+                </div>
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-4 txtColSpan" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control textWidth txtColSpan" } })
+                </div>
+            </div>
+        </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.doc_id, "doc_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.DropDownList("doc_id", null, htmlAttributes: new { @class = "form-control" })*@
+                    @Html.EditorFor(model => model.doc_id, new { htmlAttributes = new { @class = "form-control textWidth" } })
+                    @Html.ValidationMessageFor(model => model.doc_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.doc_file, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" id="dof_file" name="doc_file" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.doc_no, "doc_no", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.doc_no, new { htmlAttributes = new { @class = "form-control textWidth" } })
+                    @Html.ValidationMessageFor(model => model.doc_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.doc_issue_date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.doc_issue_date, new { htmlAttributes = new { @class = "form-control textWidth" } })
+                    @Html.ValidationMessageFor(model => model.doc_issue_date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.doc_expiry_date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.doc_expiry_date, new { htmlAttributes = new { @class = "form-control textWidth" } })
+                    @Html.ValidationMessageFor(model => model.doc_expiry_date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @if (ViewBag.message != null)
+                    {
+                        <p class="text-danger">@ViewBag.message</p>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <p>
+                        <b>Search By :</b>
+                        @Html.RadioButton("SearchBy", "EmpId", true) <text>EmpId</text>
+                        @Html.RadioButton("SearchBy", "DocNo") <text>DocNo</text><br />
+                        @Html.TextBox("search")
+                        @*<input type="button"
+                          onclick="location.href='@Url.Action("Doc_Emp_details", "Home" )'"
+                    value="search" />*@
+                        <input type="submit" formmethod="get"
+                               onclick="location.href='@Url.Action("Doc_Emp_details", "Home",new { SearchBy="SearchBy",search="search"} )'"
+                               value="search" />
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Doc Id</th>
+                                <th>Doc No.</th>
+                                <th>Issue Date</th>
+                                <th>Expiry Date</th>
+                                <th>Image</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Doc_History.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="5">No Records.</td>
+                                </tr>
+                            }
+                            @if (Model.Doc_History != null)
+                            {
+                                foreach (var dc in Model.Doc_History)
+                                {
+                                    <tr>
+                                        <td style="width:50px;">@dc.doc_id</td>
+                                        <td style="width:100px;">@dc.doc_no</td>
+                                        @if (dc.doc_issue_date != null)
+                                        {
+                                            <td style="width:100px;">@(((DateTime)dc.doc_issue_date).ToString("dd'/'MM'/'yyyy"))</td>
+                                        }
+                                        else
+                                        {
+                                            <td style="width:100px;"></td>
+                                        }
+                                        @if (dc.doc_expiry_date != null)
+                                        {
+                                            <td style="width:100px;">@(((DateTime)dc.doc_expiry_date).ToString("dd'/'MM'/'yyyy"))</td>
+                                        }
+                                        else
+                                        {
+                                            <td style="width:100px;"></td>
+                                        }
+                                        <td style="width:120px;">
+                                            @if (dc.dof_file != null)
+                                            {
+                                                var base64 = Convert.ToBase64String(dc.dof_file);
+                                                var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                                                <img src='@imgsrc'
+                                                     style="max-width:100px;max-height:100px" />
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+}
+@Html.PagedListPager((IPagedList)Model.Doc_History, page => Url.Action("Doc_Emp_details", new { page, SearchBy =Request.QueryString[""], search = Request.QueryString["search"] }),
+new PagedListRenderOptions() { Display=PagedListDisplayMode.IfNeeded,DisplayPageCountAndCurrentLocation=true,DisplayItemSliceAndTotal=true})
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+      rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+
+        $(document).ready(function () {
+
+            $("#emp_id").change(
+                function () {
+                    var id = $(this).val();
+                    $.ajax({
+                        url: '/Home/Ang_Employeedetailasjson', type: "GET", dataType: "json",
+                        data: { id: id },
+                        success: function (data) {
+                            $("#Email").val(data.email);
+                            $("#PhoneNumber").val(data.PhoneNumber);
+                            $("#emp_name").val(data.name);
+                            $(document.getElementById("doc_id")).focus();
+                        },
+                        error: function (xhr, status, error) {
+                            alert(xhr.responseText);
+                            alert(status);
+                            alert(error);
+                        }
+                    });
+                }
+
+            );
+
+        });
+
+        $("#emp_id").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/Home/AutoCompleteEmployee/',
+                    data: "{ 'prefix': '" + request.term + "'}",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return item;
+                        }))
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            select: function (e, i) {
+                $("#emp_id").val(i.item.val);
+                return false;
+            },
+            minLength: 1
+        });
+    });
+</script>

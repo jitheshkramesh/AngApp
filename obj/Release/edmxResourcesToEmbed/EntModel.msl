@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OVODModelStoreContainer" CdmEntityContainer="OVODEntities5">
+    <EntitySetMapping Name="VW_COUNTRY1">
+      <EntityTypeMapping TypeName="OVODModel.VW_COUNTRY1">
+        <MappingFragment StoreEntitySet="VW_COUNTRY">
+          <ScalarProperty Name="CN_ID" ColumnName="CN_ID" />
+          <ScalarProperty Name="CN_CD" ColumnName="CN_CD" />
+          <ScalarProperty Name="CN_NAME" ColumnName="CN_NAME" />
+          <ScalarProperty Name="CN_CURR" ColumnName="CN_CURR" />
+          <ScalarProperty Name="CN_COMPCD" ColumnName="CN_COMPCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TTMASTs">
+      <EntityTypeMapping TypeName="OVODModel.TTMAST">
+        <MappingFragment StoreEntitySet="TTMAST">
+          <ScalarProperty Name="TT_ED" ColumnName="TT_ED" />
+          <ScalarProperty Name="TT_TYPE" ColumnName="TT_TYPE" />
+          <ScalarProperty Name="TT_SUSAIR" ColumnName="TT_SUSAIR" />
+          <ScalarProperty Name="TT_SUSGRAT" ColumnName="TT_SUSGRAT" />
+          <ScalarProperty Name="TT_SUSLVE" ColumnName="TT_SUSLVE" />
+          <ScalarProperty Name="TT_GRATACCR" ColumnName="TT_GRATACCR" />
+          <ScalarProperty Name="TT_LVEACCR" ColumnName="TT_LVEACCR" />
+          <ScalarProperty Name="TT_LVERESUME" ColumnName="TT_LVERESUME" />
+          <ScalarProperty Name="TT_GROUP" ColumnName="TT_GROUP" />
+          <ScalarProperty Name="TT_DESC" ColumnName="TT_DESC" />
+          <ScalarProperty Name="TT_CODE" ColumnName="TT_CODE" />
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTMENTs">
+      <EntityTypeMapping TypeName="OVODModel.DEPARTMENT">
+        <MappingFragment StoreEntitySet="DEPARTMENT">
+          <ScalarProperty Name="DP_NAME" ColumnName="DP_NAME" />
+          <ScalarProperty Name="DP_CD" ColumnName="DP_CD" />
+          <ScalarProperty Name="DP_ID" ColumnName="DP_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_EMPLOYEE">
+      <EntityTypeMapping TypeName="OVODModel.VW_EMPLOYEE">
+        <MappingFragment StoreEntitySet="VW_EMPLOYEE">
+          <ScalarProperty Name="EM_DESG" ColumnName="EM_DESG" />
+          <ScalarProperty Name="EM_DEPT" ColumnName="EM_DEPT" />
+          <ScalarProperty Name="EM_PASSWORD" ColumnName="EM_PASSWORD" />
+          <ScalarProperty Name="EM_USERNAME" ColumnName="EM_USERNAME" />
+          <ScalarProperty Name="EM_MAIL" ColumnName="EM_MAIL" />
+          <ScalarProperty Name="EM_GEN" ColumnName="EM_GEN" />
+          <ScalarProperty Name="COMPCD" ColumnName="COMPCD" />
+          <ScalarProperty Name="EM_ACTIVE" ColumnName="EM_ACTIVE" />
+          <ScalarProperty Name="EM_COUNTRY" ColumnName="EM_COUNTRY" />
+          <ScalarProperty Name="EM_PHOTO" ColumnName="EM_PHOTO" />
+          <ScalarProperty Name="EM_DOJC" ColumnName="EM_DOJC" />
+          <ScalarProperty Name="EM_DOBC" ColumnName="EM_DOBC" />
+          <ScalarProperty Name="EM_DOJ" ColumnName="EM_DOJ" />
+          <ScalarProperty Name="EM_DOB" ColumnName="EM_DOB" />
+          <ScalarProperty Name="EM_GENDER" ColumnName="EM_GENDER" />
+          <ScalarProperty Name="EM_PHONE" ColumnName="EM_PHONE" />
+          <ScalarProperty Name="EM_ADDRESS" ColumnName="EM_ADDRESS" />
+          <ScalarProperty Name="EM_LASTNAME" ColumnName="EM_LASTNAME" />
+          <ScalarProperty Name="EM_NAME" ColumnName="EM_NAME" />
+          <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+          <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DESIGNATIONs">
+      <EntityTypeMapping TypeName="OVODModel.DESIGNATION">
+        <MappingFragment StoreEntitySet="DESIGNATION">
+          <ScalarProperty Name="DG_DESCRIPTION" ColumnName="DG_DESCRIPTION" />
+          <ScalarProperty Name="DG_CD" ColumnName="DG_CD" />
+          <ScalarProperty Name="DG_ID" ColumnName="DG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEESALs">
+      <EntityTypeMapping TypeName="OVODModel.EMPLOYEESAL">
+        <MappingFragment StoreEntitySet="EMPLOYEESAL">
+          <ScalarProperty Name="TT_GROUP" ColumnName="TT_GROUP" />
+          <ScalarProperty Name="TT_DESC" ColumnName="TT_DESC" />
+          <ScalarProperty Name="EM_NAME" ColumnName="EM_NAME" />
+          <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+          <ScalarProperty Name="SL_TYPE" ColumnName="SL_TYPE" />
+          <ScalarProperty Name="SL_AMT" ColumnName="SL_AMT" />
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+          <ScalarProperty Name="SL_ID" ColumnName="SL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEEs">
+      <EntityTypeMapping TypeName="OVODModel.EMPLOYEE">
+        <MappingFragment StoreEntitySet="EMPLOYEE">
+          <ScalarProperty Name="EM_CATEGORY" ColumnName="EM_CATEGORY" />
+          <ScalarProperty Name="EM_PAY_TYPE" ColumnName="EM_PAY_TYPE" />
+          <ScalarProperty Name="EM_TYPE" ColumnName="EM_TYPE" />
+          <ScalarProperty Name="EM_BANK_ACCNO" ColumnName="EM_BANK_ACCNO" />
+          <ScalarProperty Name="EM_BANK_CODE" ColumnName="EM_BANK_CODE" />
+          <ScalarProperty Name="EM_GRADE" ColumnName="EM_GRADE" />
+          <ScalarProperty Name="EM_CAMP" ColumnName="EM_CAMP" />
+          <ScalarProperty Name="EM_OFFICIAL_MAIL" ColumnName="EM_OFFICIAL_MAIL" />
+          <ScalarProperty Name="EM_REFERENCE" ColumnName="EM_REFERENCE" />
+          <ScalarProperty Name="EM_LOCAL_ADDRESS" ColumnName="EM_LOCAL_ADDRESS" />
+          <ScalarProperty Name="EM_COMPCD" ColumnName="EM_COMPCD" />
+          <ScalarProperty Name="EM_DESG" ColumnName="EM_DESG" />
+          <ScalarProperty Name="EM_DEPT" ColumnName="EM_DEPT" />
+          <ScalarProperty Name="EM_PASSWORD" ColumnName="EM_PASSWORD" />
+          <ScalarProperty Name="EM_USERNAME" ColumnName="EM_USERNAME" />
+          <ScalarProperty Name="EM_MAIL" ColumnName="EM_MAIL" />
+          <ScalarProperty Name="EM_GEN" ColumnName="EM_GEN" />
+          <ScalarProperty Name="COMPCD" ColumnName="COMPCD" />
+          <ScalarProperty Name="EM_ACTIVE" ColumnName="EM_ACTIVE" />
+          <ScalarProperty Name="EM_COUNTRY" ColumnName="EM_COUNTRY" />
+          <ScalarProperty Name="EM_PHOTO" ColumnName="EM_PHOTO" />
+          <ScalarProperty Name="EM_DOJ" ColumnName="EM_DOJ" />
+          <ScalarProperty Name="EM_DOB" ColumnName="EM_DOB" />
+          <ScalarProperty Name="EM_GENDER" ColumnName="EM_GENDER" />
+          <ScalarProperty Name="EM_PHONE" ColumnName="EM_PHONE" />
+          <ScalarProperty Name="EM_ADDRESS" ColumnName="EM_ADDRESS" />
+          <ScalarProperty Name="EM_LASTNAME" ColumnName="EM_LASTNAME" />
+          <ScalarProperty Name="EM_NAME" ColumnName="EM_NAME" />
+          <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+          <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPSALs">
+      <EntityTypeMapping TypeName="OVODModel.EMPSAL">
+        <MappingFragment StoreEntitySet="EMPSAL">
+          <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+          <ScalarProperty Name="SL_TYPE" ColumnName="SL_TYPE" />
+          <ScalarProperty Name="SL_AMT" ColumnName="SL_AMT" />
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+          <ScalarProperty Name="SL_ID" ColumnName="SL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_HD_HRPAYADJ">
+      <EntityTypeMapping TypeName="OVODModel.VW_HD_HRPAYADJ">
+        <MappingFragment StoreEntitySet="VW_HD_HRPAYADJ">
+          <ScalarProperty Name="PA_DOCNO" ColumnName="PA_DOCNO" />
+          <ScalarProperty Name="PA_DOCDATE" ColumnName="PA_DOCDATE" />
+          <ScalarProperty Name="PA_YEAR" ColumnName="PA_YEAR" />
+          <ScalarProperty Name="PA_MONTH" ColumnName="PA_MONTH" />
+          <ScalarProperty Name="PA_TITLE" ColumnName="PA_TITLE" />
+          <ScalarProperty Name="PA_HEADER" ColumnName="PA_HEADER" />
+          <ScalarProperty Name="PA_ID" ColumnName="PA_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_DT_HRPAYADJ">
+      <EntityTypeMapping TypeName="OVODModel.VW_DT_HRPAYADJ">
+        <MappingFragment StoreEntitySet="VW_DT_HRPAYADJ">
+          <ScalarProperty Name="PAD_REMARKS" ColumnName="PAD_REMARKS" />
+          <ScalarProperty Name="PAD_AMT" ColumnName="PAD_AMT" />
+          <ScalarProperty Name="PAD_RATE" ColumnName="PAD_RATE" />
+          <ScalarProperty Name="PAD_QTY" ColumnName="PAD_QTY" />
+          <ScalarProperty Name="TT_DESC" ColumnName="TT_DESC" />
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="EM_NAME" ColumnName="EM_NAME" />
+          <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+          <ScalarProperty Name="PA_DOCNO" ColumnName="PA_DOCNO" />
+          <ScalarProperty Name="PA_ID" ColumnName="PA_ID" />
+          <ScalarProperty Name="PAD_ID" ColumnName="PAD_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DT_INVOICE">
+      <EntityTypeMapping TypeName="OVODModel.DT_INVOICE">
+        <MappingFragment StoreEntitySet="DT_INVOICE">
+          <ScalarProperty Name="IT_AMT" ColumnName="IT_AMT" />
+          <ScalarProperty Name="IT_RATE" ColumnName="IT_RATE" />
+          <ScalarProperty Name="IT_QTY" ColumnName="IT_QTY" />
+          <ScalarProperty Name="IT_CODE" ColumnName="IT_CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DID" ColumnName="DID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HD_INVOICE">
+      <EntityTypeMapping TypeName="OVODModel.HD_INVOICE">
+        <MappingFragment StoreEntitySet="HD_INVOICE">
+          <ScalarProperty Name="IN_TOTAL" ColumnName="IN_TOTAL" />
+          <ScalarProperty Name="IN_CUSTOMER" ColumnName="IN_CUSTOMER" />
+          <ScalarProperty Name="IN_DESCRIPTION" ColumnName="IN_DESCRIPTION" />
+          <ScalarProperty Name="IN_DATE" ColumnName="IN_DATE" />
+          <ScalarProperty Name="IN_DOCNO" ColumnName="IN_DOCNO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DT_HRPAYADJ">
+      <EntityTypeMapping TypeName="OVODModel.DT_HRPAYADJ">
+        <MappingFragment StoreEntitySet="DT_HRPAYADJ">
+          <ScalarProperty Name="PAD_REMARKS" ColumnName="PAD_REMARKS" />
+          <ScalarProperty Name="PAD_AMT" ColumnName="PAD_AMT" />
+          <ScalarProperty Name="PAD_RATE" ColumnName="PAD_RATE" />
+          <ScalarProperty Name="PAD_QTY" ColumnName="PAD_QTY" />
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+          <ScalarProperty Name="PA_ID" ColumnName="PA_ID" />
+          <ScalarProperty Name="PAD_ID" ColumnName="PAD_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HD_HRPAYADJ">
+      <EntityTypeMapping TypeName="OVODModel.HD_HRPAYADJ">
+        <MappingFragment StoreEntitySet="HD_HRPAYADJ">
+          <ScalarProperty Name="GTOTAL" ColumnName="GTOTAL" />
+          <ScalarProperty Name="PA_DOCNO" ColumnName="PA_DOCNO" />
+          <ScalarProperty Name="PA_DOCDATE" ColumnName="PA_DOCDATE" />
+          <ScalarProperty Name="PA_YEAR" ColumnName="PA_YEAR" />
+          <ScalarProperty Name="PA_MONTH" ColumnName="PA_MONTH" />
+          <ScalarProperty Name="PA_TITLE" ColumnName="PA_TITLE" />
+          <ScalarProperty Name="PA_HEADER" ColumnName="PA_HEADER" />
+          <ScalarProperty Name="PA_ID" ColumnName="PA_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Raks">
+      <EntityTypeMapping TypeName="OVODModel.Rak">
+        <MappingFragment StoreEntitySet="Rak">
+          <ScalarProperty Name="shelf_id" ColumnName="shelf_id" />
+          <ScalarProperty Name="rak_desc" ColumnName="rak_desc" />
+          <ScalarProperty Name="rak_name" ColumnName="rak_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shelves">
+      <EntityTypeMapping TypeName="OVODModel.Shelf">
+        <MappingFragment StoreEntitySet="Shelf">
+          <ScalarProperty Name="shelf_desc" ColumnName="shelf_desc" />
+          <ScalarProperty Name="shelf_name" ColumnName="shelf_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_Doc_History">
+      <EntityTypeMapping TypeName="OVODModel.Emp_Doc_History">
+        <MappingFragment StoreEntitySet="Emp_Doc_History">
+          <ScalarProperty Name="doc_expiry_date" ColumnName="doc_expiry_date" />
+          <ScalarProperty Name="doc_issue_date" ColumnName="doc_issue_date" />
+          <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+          <ScalarProperty Name="dof_file" ColumnName="dof_file" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ANG_EMPLOYEE">
+      <EntityTypeMapping TypeName="OVODModel.ANG_EMPLOYEE">
+        <MappingFragment StoreEntitySet="ANG_EMPLOYEE">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="dateofBirth" ColumnName="dateofBirth" />
+          <ScalarProperty Name="ContactPreference" ColumnName="ContactPreference" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doc_History">
+      <EntityTypeMapping TypeName="OVODModel.Doc_History">
+        <MappingFragment StoreEntitySet="Doc_History">
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+          <ScalarProperty Name="doc_expiry_date" ColumnName="doc_expiry_date" />
+          <ScalarProperty Name="doc_issue_date" ColumnName="doc_issue_date" />
+          <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+          <ScalarProperty Name="dof_file" ColumnName="dof_file" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DIAGNOSIS">
+      <EntityTypeMapping TypeName="OVODModel.DIAGNOSI">
+        <MappingFragment StoreEntitySet="DIAGNOSIS">
+          <ScalarProperty Name="DIAGNOSIS" ColumnName="DIAGNOSIS" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DRUGs">
+      <EntityTypeMapping TypeName="OVODModel.DRUG">
+        <MappingFragment StoreEntitySet="DRUG">
+          <ScalarProperty Name="DIG_ID" ColumnName="DIG_ID" />
+          <ScalarProperty Name="DRUG1" ColumnName="DRUG" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="OVODModel.Item">
+        <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="Cat_Id" ColumnName="Cat_Id" />
+          <ScalarProperty Name="Item_Image" ColumnName="Item_Image" />
+          <ScalarProperty Name="Item_Inactive" ColumnName="Item_Inactive" />
+          <ScalarProperty Name="Item_Expiry" ColumnName="Item_Expiry" />
+          <ScalarProperty Name="Item_Date" ColumnName="Item_Date" />
+          <ScalarProperty Name="Item_Qty" ColumnName="Item_Qty" />
+          <ScalarProperty Name="Item_Category" ColumnName="Item_Category" />
+          <ScalarProperty Name="Item_Price" ColumnName="Item_Price" />
+          <ScalarProperty Name="Item_Desc" ColumnName="Item_Desc" />
+          <ScalarProperty Name="Item_Code" ColumnName="Item_Code" />
+          <ScalarProperty Name="Item_Id" ColumnName="Item_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DT_LEAVE">
+      <EntityTypeMapping TypeName="OVODModel.DT_LEAVE">
+        <MappingFragment StoreEntitySet="DT_LEAVE">
+          <ScalarProperty Name="LV_EMAIL" ColumnName="LV_EMAIL" />
+          <ScalarProperty Name="LV_DT_TO" ColumnName="LV_DT_TO" />
+          <ScalarProperty Name="LV_DT_FROM" ColumnName="LV_DT_FROM" />
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="LV_DOC_DATE" ColumnName="LV_DOC_DATE" />
+          <ScalarProperty Name="LV_DOC_NO" ColumnName="LV_DOC_NO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

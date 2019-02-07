@@ -1,0 +1,601 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OVODModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ANG_EMPLOYEE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="250" />
+    <Property Name="gender" Type="varchar" MaxLength="25" />
+    <Property Name="email" Type="varchar" MaxLength="250" />
+    <Property Name="PhoneNumber" Type="int" />
+    <Property Name="ContactPreference" Type="varchar" MaxLength="25" />
+    <Property Name="dateofBirth" Type="datetime" />
+    <Property Name="department" Type="varchar" MaxLength="250" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="PhotoPath" Type="varchar" MaxLength="250" />
+    <Property Name="password" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.DEPARTMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DEPARTMENT">
+    <Key>
+      <PropertyRef Name="DP_ID" />
+    </Key>
+    <Property Name="DP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DP_CD" Type="varchar" MaxLength="4" />
+    <Property Name="DP_NAME" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="DESIGNATION">
+    <Key>
+      <PropertyRef Name="DG_ID" />
+    </Key>
+    <Property Name="DG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DG_CD" Type="varchar" MaxLength="8" />
+    <Property Name="DG_DESCRIPTION" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="DIAGNOSIS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="10" />
+    <Property Name="DIAGNOSIS" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Doc_History">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="doc_id" Type="int" />
+    <Property Name="update_date" Type="datetime" />
+    <Property Name="dof_file" Type="varbinary(max)" />
+    <Property Name="doc_no" Type="varchar" MaxLength="50" />
+    <Property Name="doc_issue_date" Type="datetime" />
+    <Property Name="doc_expiry_date" Type="datetime" />
+    <Property Name="emp_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="DRUG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CODE" Type="nvarchar" MaxLength="10" />
+    <Property Name="DRUG" Type="varchar" MaxLength="200" />
+    <Property Name="DIG_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="DT_HRPAYADJ">
+    <Key>
+      <PropertyRef Name="PAD_ID" />
+    </Key>
+    <Property Name="PAD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PA_ID" Type="int" Nullable="false" />
+    <Property Name="EM_ID" Type="int" Nullable="false" />
+    <Property Name="TT_ID" Type="int" Nullable="false" />
+    <Property Name="PAD_QTY" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="PAD_RATE" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="PAD_AMT" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="PAD_REMARKS" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="DT_INVOICE">
+    <Key>
+      <PropertyRef Name="DID" />
+    </Key>
+    <Property Name="DID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" />
+    <Property Name="IT_CODE" Type="nchar" MaxLength="10" />
+    <Property Name="IT_QTY" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="IT_RATE" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="IT_AMT" Type="decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="Emp_Doc_History">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_id" Type="int" />
+    <Property Name="doc_id" Type="int" />
+    <Property Name="update_date" Type="datetime" />
+    <Property Name="dof_file" Type="varbinary(max)" />
+    <Property Name="doc_no" Type="varchar" MaxLength="50" />
+    <Property Name="doc_issue_date" Type="datetime" />
+    <Property Name="doc_expiry_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="EM_ID" />
+    </Key>
+    <Property Name="EM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+    <Property Name="EM_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="EM_LASTNAME" Type="varchar" MaxLength="100" />
+    <Property Name="EM_ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="EM_PHONE" Type="varchar" MaxLength="50" />
+    <Property Name="EM_GENDER" Type="varchar" MaxLength="10" />
+    <Property Name="EM_DOB" Type="datetime" />
+    <Property Name="EM_DOJ" Type="datetime" />
+    <Property Name="EM_PHOTO" Type="varchar" MaxLength="500" />
+    <Property Name="EM_COUNTRY" Type="varchar" MaxLength="100" />
+    <Property Name="EM_ACTIVE" Type="bit" />
+    <Property Name="COMPCD" Type="varchar" MaxLength="3" />
+    <Property Name="EM_GEN" Type="char" MaxLength="1" />
+    <Property Name="EM_MAIL" Type="varchar" MaxLength="150" />
+    <Property Name="EM_USERNAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="EM_PASSWORD" Type="nvarchar" MaxLength="100" />
+    <Property Name="EM_DEPT" Type="varchar" MaxLength="4" />
+    <Property Name="EM_DESG" Type="varchar" MaxLength="8" />
+    <Property Name="EM_COMPCD" Type="varchar" MaxLength="3" />
+    <Property Name="EM_LOCAL_ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="EM_REFERENCE" Type="varchar" MaxLength="200" />
+    <Property Name="EM_OFFICIAL_MAIL" Type="varchar" MaxLength="200" />
+    <Property Name="EM_CAMP" Type="varchar" MaxLength="10" />
+    <Property Name="EM_GRADE" Type="varchar" MaxLength="4" />
+    <Property Name="EM_BANK_CODE" Type="varchar" MaxLength="4" />
+    <Property Name="EM_BANK_ACCNO" Type="varchar" MaxLength="50" />
+    <Property Name="EM_TYPE" Type="varchar" MaxLength="1" />
+    <Property Name="EM_PAY_TYPE" Type="varchar" MaxLength="1" />
+    <Property Name="EM_CATEGORY" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="EMPSAL">
+    <Key>
+      <PropertyRef Name="SL_ID" />
+    </Key>
+    <Property Name="SL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EM_ID" Type="int" />
+    <Property Name="TT_ID" Type="int" />
+    <Property Name="SL_AMT" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="SL_TYPE" Type="varchar" MaxLength="1" />
+    <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="HD_HRPAYADJ">
+    <Key>
+      <PropertyRef Name="PA_ID" />
+    </Key>
+    <Property Name="PA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PA_HEADER" Type="varchar" MaxLength="500" />
+    <Property Name="PA_TITLE" Type="varchar" MaxLength="500" />
+    <Property Name="PA_MONTH" Type="varchar" MaxLength="2" />
+    <Property Name="PA_YEAR" Type="varchar" MaxLength="4" />
+    <Property Name="PA_DOCDATE" Type="datetime" />
+    <Property Name="PA_DOCNO" Type="varchar" MaxLength="10" />
+    <Property Name="GTOTAL" Type="decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="HD_INVOICE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IN_DOCNO" Type="varchar" MaxLength="10" />
+    <Property Name="IN_DATE" Type="datetime" />
+    <Property Name="IN_DESCRIPTION" Type="nvarchar" MaxLength="200" />
+    <Property Name="IN_CUSTOMER" Type="nvarchar" MaxLength="10" />
+    <Property Name="IN_TOTAL" Type="decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="Item_Id" />
+    </Key>
+    <Property Name="Item_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Item_Code" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Item_Desc" Type="nvarchar" MaxLength="150" />
+    <Property Name="Item_Price" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="Item_Category" Type="nchar" MaxLength="10" />
+    <Property Name="Item_Qty" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="Item_Date" Type="datetime" />
+    <Property Name="Item_Expiry" Type="datetime" />
+    <Property Name="Item_Inactive" Type="bit" />
+    <Property Name="Item_Image" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Rak">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rak_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="rak_desc" Type="nvarchar" MaxLength="500" />
+    <Property Name="shelf_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Shelf">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="shelf_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="shelf_desc" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="TTMAST">
+    <Key>
+      <PropertyRef Name="TT_ID" />
+    </Key>
+    <Property Name="TT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TT_CODE" Type="varchar" MaxLength="4" />
+    <Property Name="TT_DESC" Type="nvarchar" MaxLength="50" />
+    <Property Name="TT_GROUP" Type="varchar" MaxLength="1" />
+    <Property Name="TT_LVERESUME" Type="bit" />
+    <Property Name="TT_LVEACCR" Type="bit" />
+    <Property Name="TT_GRATACCR" Type="bit" />
+    <Property Name="TT_SUSLVE" Type="bit" />
+    <Property Name="TT_SUSGRAT" Type="bit" />
+    <Property Name="TT_SUSAIR" Type="bit" />
+    <Property Name="TT_TYPE" Type="varchar" MaxLength="1" />
+    <Property Name="TT_ED" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.EMPLOYEESAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EMPLOYEESAL">
+    <Key>
+      <PropertyRef Name="SL_ID" />
+    </Key>
+    <Property Name="SL_ID" Type="int" Nullable="false" />
+    <Property Name="EM_ID" Type="int" />
+    <Property Name="TT_ID" Type="int" />
+    <Property Name="SL_AMT" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="SL_TYPE" Type="varchar" MaxLength="1" />
+    <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+    <Property Name="EM_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="TT_DESC" Type="nvarchar" MaxLength="50" />
+    <Property Name="TT_GROUP" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.VW_COUNTRY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_COUNTRY">
+    <Key>
+      <PropertyRef Name="CN_ID" />
+    </Key>
+    <Property Name="CN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CN_CD" Type="varchar" MaxLength="3" />
+    <Property Name="CN_NAME" Type="varchar" MaxLength="150" />
+    <Property Name="CN_CURR" Type="int" />
+    <Property Name="CN_COMPCD" Type="varchar" MaxLength="3" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.VW_DT_HRPAYADJ' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_DT_HRPAYADJ">
+    <Key>
+      <PropertyRef Name="PAD_ID" />
+    </Key>
+    <Property Name="PAD_ID" Type="int" Nullable="false" />
+    <Property Name="PA_ID" Type="int" />
+    <Property Name="PA_DOCNO" Type="varchar" MaxLength="10" />
+    <Property Name="EM_ID" Type="int" />
+    <Property Name="EM_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="TT_ID" Type="int" />
+    <Property Name="TT_DESC" Type="nvarchar" MaxLength="50" />
+    <Property Name="PAD_QTY" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="PAD_RATE" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="PAD_AMT" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="PAD_REMARKS" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.VW_EMPLOYEE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_EMPLOYEE">
+    <Key>
+      <PropertyRef Name="EM_ID" />
+    </Key>
+    <Property Name="EM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+    <Property Name="EM_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="EM_LASTNAME" Type="varchar" MaxLength="100" />
+    <Property Name="EM_ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="EM_PHONE" Type="varchar" MaxLength="50" />
+    <Property Name="EM_GENDER" Type="varchar" MaxLength="10" />
+    <Property Name="EM_DOB" Type="datetime" />
+    <Property Name="EM_DOJ" Type="datetime" />
+    <Property Name="EM_DOBC" Type="varchar" MaxLength="10" />
+    <Property Name="EM_DOJC" Type="varchar" MaxLength="10" />
+    <Property Name="EM_PHOTO" Type="varchar" MaxLength="500" />
+    <Property Name="EM_COUNTRY" Type="varchar" MaxLength="100" />
+    <Property Name="EM_ACTIVE" Type="bit" />
+    <Property Name="COMPCD" Type="varchar" MaxLength="3" />
+    <Property Name="EM_GEN" Type="char" MaxLength="1" />
+    <Property Name="EM_MAIL" Type="varchar" MaxLength="150" />
+    <Property Name="EM_USERNAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="EM_PASSWORD" Type="nvarchar" MaxLength="100" />
+    <Property Name="EM_DEPT" Type="varchar" MaxLength="4" />
+    <Property Name="EM_DESG" Type="varchar" MaxLength="8" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.VW_HD_HRPAYADJ' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_HD_HRPAYADJ">
+    <Key>
+      <PropertyRef Name="PA_ID" />
+    </Key>
+    <Property Name="PA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PA_HEADER" Type="varchar" MaxLength="500" />
+    <Property Name="PA_TITLE" Type="varchar" MaxLength="500" />
+    <Property Name="PA_MONTH" Type="varchar" MaxLength="2" />
+    <Property Name="PA_YEAR" Type="varchar" MaxLength="4" />
+    <Property Name="PA_DOCDATE" Type="datetime" />
+    <Property Name="PA_DOCNO" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_Doc_History_ANG_EMPLOYEE">
+    <End Role="ANG_EMPLOYEE" Type="Self.ANG_EMPLOYEE" Multiplicity="0..1" />
+    <End Role="Doc_History" Type="Self.Doc_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ANG_EMPLOYEE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Doc_History">
+        <PropertyRef Name="emp_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doc_History_TTMAST">
+    <End Role="TTMAST" Type="Self.TTMAST" Multiplicity="0..1" />
+    <End Role="Doc_History" Type="Self.Doc_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TTMAST">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="Doc_History">
+        <PropertyRef Name="doc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DRUG_DIAGNOSIS">
+    <End Role="DIAGNOSIS" Type="Self.DIAGNOSIS" Multiplicity="0..1" />
+    <End Role="DRUG" Type="Self.DRUG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DIAGNOSIS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DRUG">
+        <PropertyRef Name="DIG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DT_INVOICE_HD_INVOICE">
+    <End Role="HD_INVOICE" Type="Self.HD_INVOICE" Multiplicity="0..1" />
+    <End Role="DT_INVOICE" Type="Self.DT_INVOICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HD_INVOICE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DT_INVOICE">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Emp_Doc_History_ANG_EMPLOYEE">
+    <End Role="ANG_EMPLOYEE" Type="Self.ANG_EMPLOYEE" Multiplicity="0..1" />
+    <End Role="Emp_Doc_History" Type="Self.Emp_Doc_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ANG_EMPLOYEE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Emp_Doc_History">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Emp_Doc_History_TTMAST">
+    <End Role="TTMAST" Type="Self.TTMAST" Multiplicity="0..1" />
+    <End Role="Emp_Doc_History" Type="Self.Emp_Doc_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TTMAST">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="Emp_Doc_History">
+        <PropertyRef Name="doc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPSAL_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="EMPSAL" Type="Self.EMPSAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="EM_ID" />
+      </Principal>
+      <Dependent Role="EMPSAL">
+        <PropertyRef Name="EM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPSAL_EMPSAL">
+    <End Role="TTMAST" Type="Self.TTMAST" Multiplicity="0..1" />
+    <End Role="EMPSAL" Type="Self.EMPSAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TTMAST">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="EMPSAL">
+        <PropertyRef Name="TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HD_HRPAYADJ_DT_HRPAYADJ">
+    <End Role="HD_HRPAYADJ" Type="Self.HD_HRPAYADJ" Multiplicity="1" />
+    <End Role="DT_HRPAYADJ" Type="Self.DT_HRPAYADJ" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HD_HRPAYADJ">
+        <PropertyRef Name="PA_ID" />
+      </Principal>
+      <Dependent Role="DT_HRPAYADJ">
+        <PropertyRef Name="PA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rak_Shelf">
+    <End Role="Shelf" Type="Self.Shelf" Multiplicity="0..1" />
+    <End Role="Rak" Type="Self.Rak" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shelf">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Rak">
+        <PropertyRef Name="shelf_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shelf_Shelf">
+    <End Role="Shelf" Type="Self.Shelf" Multiplicity="1" />
+    <End Role="Shelf1" Type="Self.Shelf" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Shelf">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Shelf1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TTMAST_DT_HRPAYADJ">
+    <End Role="TTMAST" Type="Self.TTMAST" Multiplicity="1" />
+    <End Role="DT_HRPAYADJ" Type="Self.DT_HRPAYADJ" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TTMAST">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="DT_HRPAYADJ">
+        <PropertyRef Name="TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OVODModelStoreContainer">
+    <EntitySet Name="ANG_EMPLOYEE" EntityType="Self.ANG_EMPLOYEE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DESIGNATION" EntityType="Self.DESIGNATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DIAGNOSIS" EntityType="Self.DIAGNOSIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Doc_History" EntityType="Self.Doc_History" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DRUG" EntityType="Self.DRUG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DT_HRPAYADJ" EntityType="Self.DT_HRPAYADJ" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DT_INVOICE" EntityType="Self.DT_INVOICE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emp_Doc_History" EntityType="Self.Emp_Doc_History" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPSAL" EntityType="Self.EMPSAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HD_HRPAYADJ" EntityType="Self.HD_HRPAYADJ" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HD_INVOICE" EntityType="Self.HD_INVOICE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rak" EntityType="Self.Rak" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shelf" EntityType="Self.Shelf" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TTMAST" EntityType="Self.TTMAST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DEPARTMENT].[DP_ID] AS [DP_ID], 
+    [DEPARTMENT].[DP_CD] AS [DP_CD], 
+    [DEPARTMENT].[DP_NAME] AS [DP_NAME]
+    FROM [dbo].[DEPARTMENT] AS [DEPARTMENT]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="EMPLOYEESAL" EntityType="Self.EMPLOYEESAL" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EMPLOYEESAL].[SL_ID] AS [SL_ID], 
+    [EMPLOYEESAL].[EM_ID] AS [EM_ID], 
+    [EMPLOYEESAL].[TT_ID] AS [TT_ID], 
+    [EMPLOYEESAL].[SL_AMT] AS [SL_AMT], 
+    [EMPLOYEESAL].[SL_TYPE] AS [SL_TYPE], 
+    [EMPLOYEESAL].[EM_CODE] AS [EM_CODE], 
+    [EMPLOYEESAL].[EM_NAME] AS [EM_NAME], 
+    [EMPLOYEESAL].[TT_DESC] AS [TT_DESC], 
+    [EMPLOYEESAL].[TT_GROUP] AS [TT_GROUP]
+    FROM [dbo].[EMPLOYEESAL] AS [EMPLOYEESAL]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_COUNTRY" EntityType="Self.VW_COUNTRY" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_COUNTRY].[CN_ID] AS [CN_ID], 
+    [VW_COUNTRY].[CN_CD] AS [CN_CD], 
+    [VW_COUNTRY].[CN_NAME] AS [CN_NAME], 
+    [VW_COUNTRY].[CN_CURR] AS [CN_CURR], 
+    [VW_COUNTRY].[CN_COMPCD] AS [CN_COMPCD]
+    FROM [dbo].[VW_COUNTRY] AS [VW_COUNTRY]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_DT_HRPAYADJ" EntityType="Self.VW_DT_HRPAYADJ" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_DT_HRPAYADJ].[PAD_ID] AS [PAD_ID], 
+    [VW_DT_HRPAYADJ].[PA_ID] AS [PA_ID], 
+    [VW_DT_HRPAYADJ].[PA_DOCNO] AS [PA_DOCNO], 
+    [VW_DT_HRPAYADJ].[EM_ID] AS [EM_ID], 
+    [VW_DT_HRPAYADJ].[EM_NAME] AS [EM_NAME], 
+    [VW_DT_HRPAYADJ].[TT_ID] AS [TT_ID], 
+    [VW_DT_HRPAYADJ].[TT_DESC] AS [TT_DESC], 
+    [VW_DT_HRPAYADJ].[PAD_QTY] AS [PAD_QTY], 
+    [VW_DT_HRPAYADJ].[PAD_RATE] AS [PAD_RATE], 
+    [VW_DT_HRPAYADJ].[PAD_AMT] AS [PAD_AMT], 
+    [VW_DT_HRPAYADJ].[PAD_REMARKS] AS [PAD_REMARKS]
+    FROM [dbo].[VW_DT_HRPAYADJ] AS [VW_DT_HRPAYADJ]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_EMPLOYEE" EntityType="Self.VW_EMPLOYEE" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_EMPLOYEE].[EM_ID] AS [EM_ID], 
+    [VW_EMPLOYEE].[EM_CODE] AS [EM_CODE], 
+    [VW_EMPLOYEE].[EM_NAME] AS [EM_NAME], 
+    [VW_EMPLOYEE].[EM_LASTNAME] AS [EM_LASTNAME], 
+    [VW_EMPLOYEE].[EM_ADDRESS] AS [EM_ADDRESS], 
+    [VW_EMPLOYEE].[EM_PHONE] AS [EM_PHONE], 
+    [VW_EMPLOYEE].[EM_GENDER] AS [EM_GENDER], 
+    [VW_EMPLOYEE].[EM_DOB] AS [EM_DOB], 
+    [VW_EMPLOYEE].[EM_DOJ] AS [EM_DOJ], 
+    [VW_EMPLOYEE].[EM_DOBC] AS [EM_DOBC], 
+    [VW_EMPLOYEE].[EM_DOJC] AS [EM_DOJC], 
+    [VW_EMPLOYEE].[EM_PHOTO] AS [EM_PHOTO], 
+    [VW_EMPLOYEE].[EM_COUNTRY] AS [EM_COUNTRY], 
+    [VW_EMPLOYEE].[EM_ACTIVE] AS [EM_ACTIVE], 
+    [VW_EMPLOYEE].[COMPCD] AS [COMPCD], 
+    [VW_EMPLOYEE].[EM_GEN] AS [EM_GEN], 
+    [VW_EMPLOYEE].[EM_MAIL] AS [EM_MAIL], 
+    [VW_EMPLOYEE].[EM_USERNAME] AS [EM_USERNAME], 
+    [VW_EMPLOYEE].[EM_PASSWORD] AS [EM_PASSWORD], 
+    [VW_EMPLOYEE].[EM_DEPT] AS [EM_DEPT], 
+    [VW_EMPLOYEE].[EM_DESG] AS [EM_DESG]
+    FROM [dbo].[VW_EMPLOYEE] AS [VW_EMPLOYEE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_HD_HRPAYADJ" EntityType="Self.VW_HD_HRPAYADJ" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_HD_HRPAYADJ].[PA_ID] AS [PA_ID], 
+    [VW_HD_HRPAYADJ].[PA_HEADER] AS [PA_HEADER], 
+    [VW_HD_HRPAYADJ].[PA_TITLE] AS [PA_TITLE], 
+    [VW_HD_HRPAYADJ].[PA_MONTH] AS [PA_MONTH], 
+    [VW_HD_HRPAYADJ].[PA_YEAR] AS [PA_YEAR], 
+    [VW_HD_HRPAYADJ].[PA_DOCDATE] AS [PA_DOCDATE], 
+    [VW_HD_HRPAYADJ].[PA_DOCNO] AS [PA_DOCNO]
+    FROM [dbo].[VW_HD_HRPAYADJ] AS [VW_HD_HRPAYADJ]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Doc_History_ANG_EMPLOYEE" Association="Self.FK_Doc_History_ANG_EMPLOYEE">
+      <End Role="ANG_EMPLOYEE" EntitySet="ANG_EMPLOYEE" />
+      <End Role="Doc_History" EntitySet="Doc_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doc_History_TTMAST" Association="Self.FK_Doc_History_TTMAST">
+      <End Role="TTMAST" EntitySet="TTMAST" />
+      <End Role="Doc_History" EntitySet="Doc_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DRUG_DIAGNOSIS" Association="Self.FK_DRUG_DIAGNOSIS">
+      <End Role="DIAGNOSIS" EntitySet="DIAGNOSIS" />
+      <End Role="DRUG" EntitySet="DRUG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DT_INVOICE_HD_INVOICE" Association="Self.FK_DT_INVOICE_HD_INVOICE">
+      <End Role="HD_INVOICE" EntitySet="HD_INVOICE" />
+      <End Role="DT_INVOICE" EntitySet="DT_INVOICE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Emp_Doc_History_ANG_EMPLOYEE" Association="Self.FK_Emp_Doc_History_ANG_EMPLOYEE">
+      <End Role="ANG_EMPLOYEE" EntitySet="ANG_EMPLOYEE" />
+      <End Role="Emp_Doc_History" EntitySet="Emp_Doc_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Emp_Doc_History_TTMAST" Association="Self.FK_Emp_Doc_History_TTMAST">
+      <End Role="TTMAST" EntitySet="TTMAST" />
+      <End Role="Emp_Doc_History" EntitySet="Emp_Doc_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPSAL_EMPLOYEE" Association="Self.FK_EMPSAL_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPSAL" EntitySet="EMPSAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPSAL_EMPSAL" Association="Self.FK_EMPSAL_EMPSAL">
+      <End Role="TTMAST" EntitySet="TTMAST" />
+      <End Role="EMPSAL" EntitySet="EMPSAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HD_HRPAYADJ_DT_HRPAYADJ" Association="Self.FK_HD_HRPAYADJ_DT_HRPAYADJ">
+      <End Role="HD_HRPAYADJ" EntitySet="HD_HRPAYADJ" />
+      <End Role="DT_HRPAYADJ" EntitySet="DT_HRPAYADJ" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rak_Shelf" Association="Self.FK_Rak_Shelf">
+      <End Role="Shelf" EntitySet="Shelf" />
+      <End Role="Rak" EntitySet="Rak" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shelf_Shelf" Association="Self.FK_Shelf_Shelf">
+      <End Role="Shelf" EntitySet="Shelf" />
+      <End Role="Shelf1" EntitySet="Shelf" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TTMAST_DT_HRPAYADJ" Association="Self.FK_TTMAST_DT_HRPAYADJ">
+      <End Role="TTMAST" EntitySet="TTMAST" />
+      <End Role="DT_HRPAYADJ" EntitySet="DT_HRPAYADJ" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

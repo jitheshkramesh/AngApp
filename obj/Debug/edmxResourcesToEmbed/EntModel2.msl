@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OVODModel1StoreContainer" CdmEntityContainer="OVODEntities4">
+    <EntitySetMapping Name="VW_COUNTRY">
+      <EntityTypeMapping TypeName="OVODModel1.VW_COUNTRY">
+        <MappingFragment StoreEntitySet="VW_COUNTRY">
+          <ScalarProperty Name="CN_ID" ColumnName="CN_ID" />
+          <ScalarProperty Name="CN_CD" ColumnName="CN_CD" />
+          <ScalarProperty Name="CN_NAME" ColumnName="CN_NAME" />
+          <ScalarProperty Name="CN_CURR" ColumnName="CN_CURR" />
+          <ScalarProperty Name="CN_COMPCD" ColumnName="CN_COMPCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_EMPLOYEE">
+      <EntityTypeMapping TypeName="OVODModel1.VW_EMPLOYEE">
+        <MappingFragment StoreEntitySet="VW_EMPLOYEE">
+          <ScalarProperty Name="EM_PASSWORD" ColumnName="EM_PASSWORD" />
+          <ScalarProperty Name="EM_USERNAME" ColumnName="EM_USERNAME" />
+          <ScalarProperty Name="EM_MAIL" ColumnName="EM_MAIL" />
+          <ScalarProperty Name="EM_GEN" ColumnName="EM_GEN" />
+          <ScalarProperty Name="COMPCD" ColumnName="COMPCD" />
+          <ScalarProperty Name="EM_ACTIVE" ColumnName="EM_ACTIVE" />
+          <ScalarProperty Name="EM_COUNTRY" ColumnName="EM_COUNTRY" />
+          <ScalarProperty Name="EM_PHOTO" ColumnName="EM_PHOTO" />
+          <ScalarProperty Name="EM_DOJC" ColumnName="EM_DOJC" />
+          <ScalarProperty Name="EM_DOBC" ColumnName="EM_DOBC" />
+          <ScalarProperty Name="EM_DOJ" ColumnName="EM_DOJ" />
+          <ScalarProperty Name="EM_DOB" ColumnName="EM_DOB" />
+          <ScalarProperty Name="EM_GENDER" ColumnName="EM_GENDER" />
+          <ScalarProperty Name="EMP_PHONE" ColumnName="EMP_PHONE" />
+          <ScalarProperty Name="EM_ADDRESS" ColumnName="EM_ADDRESS" />
+          <ScalarProperty Name="EM_LASTNAME" ColumnName="EM_LASTNAME" />
+          <ScalarProperty Name="EM_NAME" ColumnName="EM_NAME" />
+          <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+          <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

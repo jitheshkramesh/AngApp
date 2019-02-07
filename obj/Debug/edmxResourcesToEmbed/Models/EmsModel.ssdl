@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="EM_ID" />
+    </Key>
+    <Property Name="EM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+    <Property Name="EM_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="EM_LASTNAME" Type="varchar" MaxLength="100" />
+    <Property Name="EM_ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="EM_PHONE" Type="varchar" MaxLength="50" />
+    <Property Name="EM_GENDER" Type="varchar" MaxLength="10" />
+    <Property Name="EM_DOB" Type="datetime" />
+    <Property Name="EM_DOJ" Type="datetime" />
+    <Property Name="EM_PHOTO" Type="varchar" MaxLength="500" />
+    <Property Name="EM_COUNTRY" Type="varchar" MaxLength="100" />
+    <Property Name="EM_ACTIVE" Type="bit" />
+    <Property Name="COMPCD" Type="varchar" MaxLength="3" />
+    <Property Name="EM_GEN" Type="char" MaxLength="1" />
+    <Property Name="EM_MAIL" Type="varchar" MaxLength="150" />
+    <Property Name="EM_USERNAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="EM_PASSWORD" Type="nvarchar" MaxLength="100" />
+    <Property Name="EM_DEPT" Type="varchar" MaxLength="4" />
+    <Property Name="EM_DESG" Type="varchar" MaxLength="8" />
+    <Property Name="EM_COMPCD" Type="varchar" MaxLength="3" />
+    <Property Name="EM_LOCAL_ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="EM_REFERENCE" Type="varchar" MaxLength="200" />
+    <Property Name="EM_OFFICIAL_MAIL" Type="varchar" MaxLength="200" />
+    <Property Name="EM_CAMP" Type="varchar" MaxLength="10" />
+    <Property Name="EM_GRADE" Type="varchar" MaxLength="4" />
+    <Property Name="EM_BANK_CODE" Type="varchar" MaxLength="4" />
+    <Property Name="EM_BANK_ACCNO" Type="varchar" MaxLength="50" />
+    <Property Name="EM_TYPE" Type="varchar" MaxLength="1" />
+    <Property Name="EM_PAY_TYPE" Type="varchar" MaxLength="1" />
+    <Property Name="EM_CATEGORY" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="EMPSAL">
+    <Key>
+      <PropertyRef Name="SL_ID" />
+    </Key>
+    <Property Name="SL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EM_ID" Type="int" />
+    <Property Name="TT_ID" Type="int" />
+    <Property Name="SL_AMT" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="SL_TYPE" Type="varchar" MaxLength="1" />
+    <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_EMPSAL_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="EMPSAL" Type="Self.EMPSAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="EM_ID" />
+      </Principal>
+      <Dependent Role="EMPSAL">
+        <PropertyRef Name="EM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EMSModelStoreContainer">
+    <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPSAL" EntityType="Self.EMPSAL" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_EMPSAL_EMPLOYEE" Association="Self.FK_EMPSAL_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPSAL" EntitySet="EMPSAL" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

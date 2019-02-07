@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <style>
+        .dropdown-submenu {
+            position: relative;
+        }
+
+            .dropdown-submenu .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -1px;
+            }
+    </style>
+    <base href="/">
+
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="../node_modules/core-js/client/shim.min.js"></script>
+    <script src="../node_modules/zone.js/dist/zone.js"></script>
+    <script src="../node_modules/systemjs/dist/system.src.js"></script>
+    <script src="../Client/systemjs.config.js"></script>
+    @*<link href="../Content/bootstrap.css" rel="stylesheet" />*@
+    @*<link href="../Content/bootstrap-datetimepicker.css" rel="stylesheet" />*@
+    <script>
+        System.import('../Client/main.js').catch(function (err) { console.error(err); });
+    </script>
+
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
+
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script src="~/Scripts/moment.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>*@
+        @*<script src="../Scripts/bootstrap-datetimepicker.js"></script>
+        <script src="../Scripts/Site.js"></script>*@
+
+</head>
+<body>
+
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("My Page", "Index", "App")</li>
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Asp Grig", "Sales", "Grid")</li>
+                        <li>@Html.ActionLink("Sync Grid", "SyncSales", "Grid")</li>
+                        <li>@Html.ActionLink("Logout", "Login", "Home")</li>
+                    </ul>
+                </div>
+                @ *<div>Login Details</div>* @
+            </div>
+        </div>*@
+    <div class="container">
+        <div class="dropdown">
+            <button class="btn btn-default" type="button" data-toggle="dropdown">
+                Masters
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Country Master", "CountryMaster", "Home")</li>
+                <li>@Html.ActionLink("Department Master", "DepartmentMaster", "Home")</li>
+                <li>@Html.ActionLink("Employee Master Old", "Employee", "Home")</li>
+                <li>@Html.ActionLink("Employee Master", "EmployeeSave", "Home")</li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-default" type="button" data-toggle="dropdown">
+                Listing
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Country List", "CountryList", "Home")</li>
+                <li>@Html.ActionLink("Department List", "DepartmentList", "Home")</li>
+                <li>@Html.ActionLink("Employee List Old", "EmployeeList", "Home")</li>
+                <li>@Html.ActionLink("Employee List", "EmpList", "Home")</li>
+                <li>@Html.ActionLink("Employee List JQuery", "GetEmployeeLstJQuery", "Home")</li>
+                <li>@Html.ActionLink("Multiple Data", "MulitpleData", "Home")</li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-default" type="button" data-toggle="dropdown">
+                Exporting
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Employee Export", "Export_EmployeeLst", "Home")</li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                Others
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("My Page", "Index", "App")</li>
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="dropdown-submenu">
+                    <a class="test" tabindex="-1" href="#">New dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li class="dropdown-submenu">
+                            <a class="test" href="#">Another dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Asp Grig", "Sales", "Grid")</li>
+                                <li>@Html.ActionLink("Sync Grid", "SyncSales", "Grid")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    @*<script>
+            $(document).ready(function () {
+                $('.dropdown-submenu a.test').on("click", function (e) {
+                    $(this).next('ul').toggle();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+            });
+        </script>*@
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+    <script src="~/Scripts/alertify.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+        </html>

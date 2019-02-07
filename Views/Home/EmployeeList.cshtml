@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<title>Employee List</title>
+<style type="text/css">
+    .webGrid {
+        margin: 4px;
+        border-collapse: collapse;
+        width: 500px;
+        background-color: #B4CFC3;
+    }
+
+    .header {
+        background-color: #C1D4E6;
+        font-weight: bold;
+        color: #FFF;
+    }
+
+    .webGrid th, .webGrid td {
+        border: 1px solid #C0C0C0;
+        padding: 5px;
+    }
+
+    .alt {
+        background-color: #E4E9F5;
+        color: #000;
+    }
+
+    .gridHead a:hover {
+        text-decoration: underline;
+    }
+
+    .description {
+        width: auto;
+    }
+
+    .select {
+        background-color: #71857C;
+    }
+
+    .namewidth {
+        width: 450px;
+    }
+</style>
+
+<h2>EmployeeList</h2>
+<div>
+    @grid.GetHtml(
+
+    tableStyle: "table",
+    fillEmptyRows: true,
+    headerStyle: "header", //applying style.
+    footerStyle: "grid-footer", //applying style.
+    mode: WebGridPagerModes.All, //paging to grid
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+
+    columns: new[]  // colums in grid
+    {
+        grid.Column("EM_CODE","Code", format: (item) => Html.ActionLink((string)item.EM_CODE.ToString(), "Employee", new { id = item.EM_CODE })), //the model fields to display
+        grid.Column("EM_NAME","First Name"),
+        grid.Column("EM_LASTNAME","Last Name"),
+        grid.Column("EM_ADDRESS","Address"),
+        grid.Column("EM_PHONE","Phone"),
+        grid.Column("EM_GENDER","Gender"),
+        grid.Column("EM_DOB","Date of Birth",
+        format: (Emp) => string.Format("{0:dd-MMM-yyyy}", Emp.EM_DOB) ),
+        grid.Column("EM_DOJ","Date of Join",
+        format: (Emp) => string.Format("{0:dd-MMM-yyyy}", Emp.EM_DOJ) ),
+        grid.Column("EM_PHOTO","Image Location"),
+        grid.Column("EM_COUNTRY","Country"),
+        grid.Column("EM_ACTIVE","Is Active?")
+   })
+</div>

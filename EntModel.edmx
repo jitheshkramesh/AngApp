@@ -1,0 +1,1572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OVODModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ANG_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="250" />
+          <Property Name="gender" Type="varchar" MaxLength="25" />
+          <Property Name="email" Type="varchar" MaxLength="250" />
+          <Property Name="PhoneNumber" Type="int" />
+          <Property Name="ContactPreference" Type="varchar" MaxLength="25" />
+          <Property Name="dateofBirth" Type="datetime" />
+          <Property Name="department" Type="varchar" MaxLength="250" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="PhotoPath" Type="varchar" MaxLength="250" />
+          <Property Name="password" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.DEPARTMENT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="DP_ID" />
+          </Key>
+          <Property Name="DP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DP_CD" Type="varchar" MaxLength="4" />
+          <Property Name="DP_NAME" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="DESIGNATION">
+          <Key>
+            <PropertyRef Name="DG_ID" />
+          </Key>
+          <Property Name="DG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DG_CD" Type="varchar" MaxLength="8" />
+          <Property Name="DG_DESCRIPTION" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="DIAGNOSIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="10" />
+          <Property Name="DIAGNOSIS" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Doc_History">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doc_id" Type="int" />
+          <Property Name="update_date" Type="datetime" />
+          <Property Name="dof_file" Type="varbinary(max)" />
+          <Property Name="doc_no" Type="varchar" MaxLength="50" />
+          <Property Name="doc_issue_date" Type="datetime" />
+          <Property Name="doc_expiry_date" Type="datetime" />
+          <Property Name="emp_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="DRUG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="nvarchar" MaxLength="10" />
+          <Property Name="DRUG" Type="varchar" MaxLength="200" />
+          <Property Name="DIG_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="DT_HRPAYADJ">
+          <Key>
+            <PropertyRef Name="PAD_ID" />
+          </Key>
+          <Property Name="PAD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PA_ID" Type="int" Nullable="false" />
+          <Property Name="EM_ID" Type="int" Nullable="false" />
+          <Property Name="TT_ID" Type="int" Nullable="false" />
+          <Property Name="PAD_QTY" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_RATE" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_AMT" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_REMARKS" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="DT_INVOICE">
+          <Key>
+            <PropertyRef Name="DID" />
+          </Key>
+          <Property Name="DID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" />
+          <Property Name="IT_CODE" Type="nchar" MaxLength="10" />
+          <Property Name="IT_QTY" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="IT_RATE" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="IT_AMT" Type="decimal" Precision="18" Scale="3" />
+        </EntityType>
+        <EntityType Name="DT_LEAVE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LV_DOC_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LV_DOC_DATE" Type="datetime" />
+          <Property Name="EMP_ID" Type="int" />
+          <Property Name="TT_ID" Type="int" />
+          <Property Name="LV_DT_FROM" Type="datetime" />
+          <Property Name="LV_DT_TO" Type="datetime" />
+          <Property Name="LV_EMAIL" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Emp_Doc_History">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_id" Type="int" />
+          <Property Name="doc_id" Type="int" />
+          <Property Name="update_date" Type="datetime" />
+          <Property Name="dof_file" Type="varbinary(max)" />
+          <Property Name="doc_no" Type="varchar" MaxLength="50" />
+          <Property Name="doc_issue_date" Type="datetime" />
+          <Property Name="doc_expiry_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EM_ID" />
+          </Key>
+          <Property Name="EM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+          <Property Name="EM_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="EM_LASTNAME" Type="varchar" MaxLength="100" />
+          <Property Name="EM_ADDRESS" Type="varchar" MaxLength="500" />
+          <Property Name="EM_PHONE" Type="varchar" MaxLength="50" />
+          <Property Name="EM_GENDER" Type="varchar" MaxLength="10" />
+          <Property Name="EM_DOB" Type="datetime" />
+          <Property Name="EM_DOJ" Type="datetime" />
+          <Property Name="EM_PHOTO" Type="varchar" MaxLength="500" />
+          <Property Name="EM_COUNTRY" Type="varchar" MaxLength="100" />
+          <Property Name="EM_ACTIVE" Type="bit" />
+          <Property Name="COMPCD" Type="varchar" MaxLength="3" />
+          <Property Name="EM_GEN" Type="char" MaxLength="1" />
+          <Property Name="EM_MAIL" Type="varchar" MaxLength="150" />
+          <Property Name="EM_USERNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="EM_PASSWORD" Type="nvarchar" MaxLength="100" />
+          <Property Name="EM_DEPT" Type="varchar" MaxLength="4" />
+          <Property Name="EM_DESG" Type="varchar" MaxLength="8" />
+          <Property Name="EM_COMPCD" Type="varchar" MaxLength="3" />
+          <Property Name="EM_LOCAL_ADDRESS" Type="varchar" MaxLength="500" />
+          <Property Name="EM_REFERENCE" Type="varchar" MaxLength="200" />
+          <Property Name="EM_OFFICIAL_MAIL" Type="varchar" MaxLength="200" />
+          <Property Name="EM_CAMP" Type="varchar" MaxLength="10" />
+          <Property Name="EM_GRADE" Type="varchar" MaxLength="4" />
+          <Property Name="EM_BANK_CODE" Type="varchar" MaxLength="4" />
+          <Property Name="EM_BANK_ACCNO" Type="varchar" MaxLength="50" />
+          <Property Name="EM_TYPE" Type="varchar" MaxLength="1" />
+          <Property Name="EM_PAY_TYPE" Type="varchar" MaxLength="1" />
+          <Property Name="EM_CATEGORY" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="EMPSAL">
+          <Key>
+            <PropertyRef Name="SL_ID" />
+          </Key>
+          <Property Name="SL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EM_ID" Type="int" />
+          <Property Name="TT_ID" Type="int" />
+          <Property Name="SL_AMT" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="SL_TYPE" Type="varchar" MaxLength="1" />
+          <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="HD_HRPAYADJ">
+          <Key>
+            <PropertyRef Name="PA_ID" />
+          </Key>
+          <Property Name="PA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PA_HEADER" Type="varchar" MaxLength="500" />
+          <Property Name="PA_TITLE" Type="varchar" MaxLength="500" />
+          <Property Name="PA_MONTH" Type="varchar" MaxLength="2" />
+          <Property Name="PA_YEAR" Type="varchar" MaxLength="4" />
+          <Property Name="PA_DOCDATE" Type="datetime" />
+          <Property Name="PA_DOCNO" Type="varchar" MaxLength="10" />
+          <Property Name="GTOTAL" Type="decimal" Precision="18" Scale="3" />
+        </EntityType>
+        <EntityType Name="HD_INVOICE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IN_DOCNO" Type="varchar" MaxLength="10" />
+          <Property Name="IN_DATE" Type="datetime" />
+          <Property Name="IN_DESCRIPTION" Type="nvarchar" MaxLength="200" />
+          <Property Name="IN_CUSTOMER" Type="nvarchar" MaxLength="10" />
+          <Property Name="IN_TOTAL" Type="decimal" Precision="18" Scale="3" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Item_Id" />
+          </Key>
+          <Property Name="Item_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Item_Code" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Item_Desc" Type="nvarchar" MaxLength="150" />
+          <Property Name="Item_Price" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Item_Category" Type="nchar" MaxLength="10" />
+          <Property Name="Item_Qty" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Item_Date" Type="datetime" />
+          <Property Name="Item_Expiry" Type="datetime" />
+          <Property Name="Item_Inactive" Type="bit" />
+          <Property Name="Item_Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="Cat_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Rak">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rak_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="rak_desc" Type="nvarchar" MaxLength="500" />
+          <Property Name="shelf_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Shelf">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shelf_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="shelf_desc" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TTMAST">
+          <Key>
+            <PropertyRef Name="TT_ID" />
+          </Key>
+          <Property Name="TT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TT_CODE" Type="varchar" MaxLength="4" />
+          <Property Name="TT_DESC" Type="nvarchar" MaxLength="50" />
+          <Property Name="TT_GROUP" Type="varchar" MaxLength="1" />
+          <Property Name="TT_LVERESUME" Type="bit" />
+          <Property Name="TT_LVEACCR" Type="bit" />
+          <Property Name="TT_GRATACCR" Type="bit" />
+          <Property Name="TT_SUSLVE" Type="bit" />
+          <Property Name="TT_SUSGRAT" Type="bit" />
+          <Property Name="TT_SUSAIR" Type="bit" />
+          <Property Name="TT_TYPE" Type="varchar" MaxLength="1" />
+          <Property Name="TT_ED" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.EMPLOYEESAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EMPLOYEESAL">
+          <Key>
+            <PropertyRef Name="SL_ID" />
+          </Key>
+          <Property Name="SL_ID" Type="int" Nullable="false" />
+          <Property Name="EM_ID" Type="int" />
+          <Property Name="TT_ID" Type="int" />
+          <Property Name="SL_AMT" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="SL_TYPE" Type="varchar" MaxLength="1" />
+          <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+          <Property Name="EM_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="TT_DESC" Type="nvarchar" MaxLength="50" />
+          <Property Name="TT_GROUP" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.VW_COUNTRY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_COUNTRY">
+          <Key>
+            <PropertyRef Name="CN_ID" />
+          </Key>
+          <Property Name="CN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CN_CD" Type="varchar" MaxLength="3" />
+          <Property Name="CN_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="CN_CURR" Type="int" />
+          <Property Name="CN_COMPCD" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.VW_DT_HRPAYADJ' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DT_HRPAYADJ">
+          <Key>
+            <PropertyRef Name="PAD_ID" />
+          </Key>
+          <Property Name="PAD_ID" Type="int" Nullable="false" />
+          <Property Name="PA_ID" Type="int" />
+          <Property Name="PA_DOCNO" Type="varchar" MaxLength="10" />
+          <Property Name="EM_ID" Type="int" />
+          <Property Name="EM_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="TT_ID" Type="int" />
+          <Property Name="TT_DESC" Type="nvarchar" MaxLength="50" />
+          <Property Name="PAD_QTY" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_RATE" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_AMT" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_REMARKS" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.VW_EMPLOYEE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EM_ID" />
+          </Key>
+          <Property Name="EM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EM_CODE" Type="varchar" MaxLength="10" />
+          <Property Name="EM_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="EM_LASTNAME" Type="varchar" MaxLength="100" />
+          <Property Name="EM_ADDRESS" Type="varchar" MaxLength="500" />
+          <Property Name="EM_PHONE" Type="varchar" MaxLength="50" />
+          <Property Name="EM_GENDER" Type="varchar" MaxLength="10" />
+          <Property Name="EM_DOB" Type="datetime" />
+          <Property Name="EM_DOJ" Type="datetime" />
+          <Property Name="EM_DOBC" Type="varchar" MaxLength="10" />
+          <Property Name="EM_DOJC" Type="varchar" MaxLength="10" />
+          <Property Name="EM_PHOTO" Type="varchar" MaxLength="500" />
+          <Property Name="EM_COUNTRY" Type="varchar" MaxLength="100" />
+          <Property Name="EM_ACTIVE" Type="bit" />
+          <Property Name="COMPCD" Type="varchar" MaxLength="3" />
+          <Property Name="EM_GEN" Type="char" MaxLength="1" />
+          <Property Name="EM_MAIL" Type="varchar" MaxLength="150" />
+          <Property Name="EM_USERNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="EM_PASSWORD" Type="nvarchar" MaxLength="100" />
+          <Property Name="EM_DEPT" Type="varchar" MaxLength="4" />
+          <Property Name="EM_DESG" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OVOD.dbo.VW_HD_HRPAYADJ' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_HD_HRPAYADJ">
+          <Key>
+            <PropertyRef Name="PA_ID" />
+          </Key>
+          <Property Name="PA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PA_HEADER" Type="varchar" MaxLength="500" />
+          <Property Name="PA_TITLE" Type="varchar" MaxLength="500" />
+          <Property Name="PA_MONTH" Type="varchar" MaxLength="2" />
+          <Property Name="PA_YEAR" Type="varchar" MaxLength="4" />
+          <Property Name="PA_DOCDATE" Type="datetime" />
+          <Property Name="PA_DOCNO" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Doc_History_ANG_EMPLOYEE">
+          <End Role="ANG_EMPLOYEE" Type="Self.ANG_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="Doc_History" Type="Self.Doc_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ANG_EMPLOYEE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Doc_History">
+              <PropertyRef Name="emp_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doc_History_TTMAST">
+          <End Role="TTMAST" Type="Self.TTMAST" Multiplicity="0..1" />
+          <End Role="Doc_History" Type="Self.Doc_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTMAST">
+              <PropertyRef Name="TT_ID" />
+            </Principal>
+            <Dependent Role="Doc_History">
+              <PropertyRef Name="doc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DRUG_DIAGNOSIS">
+          <End Role="DIAGNOSIS" Type="Self.DIAGNOSIS" Multiplicity="0..1" />
+          <End Role="DRUG" Type="Self.DRUG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIAGNOSIS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DRUG">
+              <PropertyRef Name="DIG_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DT_INVOICE_HD_INVOICE">
+          <End Role="HD_INVOICE" Type="Self.HD_INVOICE" Multiplicity="0..1" />
+          <End Role="DT_INVOICE" Type="Self.DT_INVOICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HD_INVOICE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DT_INVOICE">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DT_LEAVE_DT_LEAVE">
+          <End Role="TTMAST" Type="Self.TTMAST" Multiplicity="0..1" />
+          <End Role="DT_LEAVE" Type="Self.DT_LEAVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTMAST">
+              <PropertyRef Name="TT_ID" />
+            </Principal>
+            <Dependent Role="DT_LEAVE">
+              <PropertyRef Name="TT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emp_Doc_History_ANG_EMPLOYEE">
+          <End Role="ANG_EMPLOYEE" Type="Self.ANG_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="Emp_Doc_History" Type="Self.Emp_Doc_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ANG_EMPLOYEE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Emp_Doc_History">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emp_Doc_History_TTMAST">
+          <End Role="TTMAST" Type="Self.TTMAST" Multiplicity="0..1" />
+          <End Role="Emp_Doc_History" Type="Self.Emp_Doc_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTMAST">
+              <PropertyRef Name="TT_ID" />
+            </Principal>
+            <Dependent Role="Emp_Doc_History">
+              <PropertyRef Name="doc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPSAL_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="EMPSAL" Type="Self.EMPSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EM_ID" />
+            </Principal>
+            <Dependent Role="EMPSAL">
+              <PropertyRef Name="EM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPSAL_EMPSAL">
+          <End Role="TTMAST" Type="Self.TTMAST" Multiplicity="0..1" />
+          <End Role="EMPSAL" Type="Self.EMPSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTMAST">
+              <PropertyRef Name="TT_ID" />
+            </Principal>
+            <Dependent Role="EMPSAL">
+              <PropertyRef Name="TT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HD_HRPAYADJ_DT_HRPAYADJ">
+          <End Role="HD_HRPAYADJ" Type="Self.HD_HRPAYADJ" Multiplicity="1" />
+          <End Role="DT_HRPAYADJ" Type="Self.DT_HRPAYADJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HD_HRPAYADJ">
+              <PropertyRef Name="PA_ID" />
+            </Principal>
+            <Dependent Role="DT_HRPAYADJ">
+              <PropertyRef Name="PA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rak_Shelf">
+          <End Role="Shelf" Type="Self.Shelf" Multiplicity="0..1" />
+          <End Role="Rak" Type="Self.Rak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shelf">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rak">
+              <PropertyRef Name="shelf_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shelf_Shelf">
+          <End Role="Shelf" Type="Self.Shelf" Multiplicity="1" />
+          <End Role="Shelf1" Type="Self.Shelf" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Shelf">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Shelf1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TTMAST_DT_HRPAYADJ">
+          <End Role="TTMAST" Type="Self.TTMAST" Multiplicity="1" />
+          <End Role="DT_HRPAYADJ" Type="Self.DT_HRPAYADJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTMAST">
+              <PropertyRef Name="TT_ID" />
+            </Principal>
+            <Dependent Role="DT_HRPAYADJ">
+              <PropertyRef Name="TT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OVODModelStoreContainer">
+          <EntitySet Name="ANG_EMPLOYEE" EntityType="Self.ANG_EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DESIGNATION" EntityType="Self.DESIGNATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DIAGNOSIS" EntityType="Self.DIAGNOSIS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doc_History" EntityType="Self.Doc_History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DRUG" EntityType="Self.DRUG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DT_HRPAYADJ" EntityType="Self.DT_HRPAYADJ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DT_INVOICE" EntityType="Self.DT_INVOICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DT_LEAVE" EntityType="Self.DT_LEAVE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emp_Doc_History" EntityType="Self.Emp_Doc_History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPSAL" EntityType="Self.EMPSAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HD_HRPAYADJ" EntityType="Self.HD_HRPAYADJ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HD_INVOICE" EntityType="Self.HD_INVOICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rak" EntityType="Self.Rak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shelf" EntityType="Self.Shelf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTMAST" EntityType="Self.TTMAST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DEPARTMENT].[DP_ID] AS [DP_ID], 
+    [DEPARTMENT].[DP_CD] AS [DP_CD], 
+    [DEPARTMENT].[DP_NAME] AS [DP_NAME]
+    FROM [dbo].[DEPARTMENT] AS [DEPARTMENT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EMPLOYEESAL" EntityType="Self.EMPLOYEESAL" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EMPLOYEESAL].[SL_ID] AS [SL_ID], 
+    [EMPLOYEESAL].[EM_ID] AS [EM_ID], 
+    [EMPLOYEESAL].[TT_ID] AS [TT_ID], 
+    [EMPLOYEESAL].[SL_AMT] AS [SL_AMT], 
+    [EMPLOYEESAL].[SL_TYPE] AS [SL_TYPE], 
+    [EMPLOYEESAL].[EM_CODE] AS [EM_CODE], 
+    [EMPLOYEESAL].[EM_NAME] AS [EM_NAME], 
+    [EMPLOYEESAL].[TT_DESC] AS [TT_DESC], 
+    [EMPLOYEESAL].[TT_GROUP] AS [TT_GROUP]
+    FROM [dbo].[EMPLOYEESAL] AS [EMPLOYEESAL]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_COUNTRY" EntityType="Self.VW_COUNTRY" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_COUNTRY].[CN_ID] AS [CN_ID], 
+    [VW_COUNTRY].[CN_CD] AS [CN_CD], 
+    [VW_COUNTRY].[CN_NAME] AS [CN_NAME], 
+    [VW_COUNTRY].[CN_CURR] AS [CN_CURR], 
+    [VW_COUNTRY].[CN_COMPCD] AS [CN_COMPCD]
+    FROM [dbo].[VW_COUNTRY] AS [VW_COUNTRY]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_DT_HRPAYADJ" EntityType="Self.VW_DT_HRPAYADJ" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_DT_HRPAYADJ].[PAD_ID] AS [PAD_ID], 
+    [VW_DT_HRPAYADJ].[PA_ID] AS [PA_ID], 
+    [VW_DT_HRPAYADJ].[PA_DOCNO] AS [PA_DOCNO], 
+    [VW_DT_HRPAYADJ].[EM_ID] AS [EM_ID], 
+    [VW_DT_HRPAYADJ].[EM_NAME] AS [EM_NAME], 
+    [VW_DT_HRPAYADJ].[TT_ID] AS [TT_ID], 
+    [VW_DT_HRPAYADJ].[TT_DESC] AS [TT_DESC], 
+    [VW_DT_HRPAYADJ].[PAD_QTY] AS [PAD_QTY], 
+    [VW_DT_HRPAYADJ].[PAD_RATE] AS [PAD_RATE], 
+    [VW_DT_HRPAYADJ].[PAD_AMT] AS [PAD_AMT], 
+    [VW_DT_HRPAYADJ].[PAD_REMARKS] AS [PAD_REMARKS]
+    FROM [dbo].[VW_DT_HRPAYADJ] AS [VW_DT_HRPAYADJ]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_EMPLOYEE" EntityType="Self.VW_EMPLOYEE" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_EMPLOYEE].[EM_ID] AS [EM_ID], 
+    [VW_EMPLOYEE].[EM_CODE] AS [EM_CODE], 
+    [VW_EMPLOYEE].[EM_NAME] AS [EM_NAME], 
+    [VW_EMPLOYEE].[EM_LASTNAME] AS [EM_LASTNAME], 
+    [VW_EMPLOYEE].[EM_ADDRESS] AS [EM_ADDRESS], 
+    [VW_EMPLOYEE].[EM_PHONE] AS [EM_PHONE], 
+    [VW_EMPLOYEE].[EM_GENDER] AS [EM_GENDER], 
+    [VW_EMPLOYEE].[EM_DOB] AS [EM_DOB], 
+    [VW_EMPLOYEE].[EM_DOJ] AS [EM_DOJ], 
+    [VW_EMPLOYEE].[EM_DOBC] AS [EM_DOBC], 
+    [VW_EMPLOYEE].[EM_DOJC] AS [EM_DOJC], 
+    [VW_EMPLOYEE].[EM_PHOTO] AS [EM_PHOTO], 
+    [VW_EMPLOYEE].[EM_COUNTRY] AS [EM_COUNTRY], 
+    [VW_EMPLOYEE].[EM_ACTIVE] AS [EM_ACTIVE], 
+    [VW_EMPLOYEE].[COMPCD] AS [COMPCD], 
+    [VW_EMPLOYEE].[EM_GEN] AS [EM_GEN], 
+    [VW_EMPLOYEE].[EM_MAIL] AS [EM_MAIL], 
+    [VW_EMPLOYEE].[EM_USERNAME] AS [EM_USERNAME], 
+    [VW_EMPLOYEE].[EM_PASSWORD] AS [EM_PASSWORD], 
+    [VW_EMPLOYEE].[EM_DEPT] AS [EM_DEPT], 
+    [VW_EMPLOYEE].[EM_DESG] AS [EM_DESG]
+    FROM [dbo].[VW_EMPLOYEE] AS [VW_EMPLOYEE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_HD_HRPAYADJ" EntityType="Self.VW_HD_HRPAYADJ" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_HD_HRPAYADJ].[PA_ID] AS [PA_ID], 
+    [VW_HD_HRPAYADJ].[PA_HEADER] AS [PA_HEADER], 
+    [VW_HD_HRPAYADJ].[PA_TITLE] AS [PA_TITLE], 
+    [VW_HD_HRPAYADJ].[PA_MONTH] AS [PA_MONTH], 
+    [VW_HD_HRPAYADJ].[PA_YEAR] AS [PA_YEAR], 
+    [VW_HD_HRPAYADJ].[PA_DOCDATE] AS [PA_DOCDATE], 
+    [VW_HD_HRPAYADJ].[PA_DOCNO] AS [PA_DOCNO]
+    FROM [dbo].[VW_HD_HRPAYADJ] AS [VW_HD_HRPAYADJ]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Doc_History_ANG_EMPLOYEE" Association="Self.FK_Doc_History_ANG_EMPLOYEE">
+            <End Role="ANG_EMPLOYEE" EntitySet="ANG_EMPLOYEE" />
+            <End Role="Doc_History" EntitySet="Doc_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doc_History_TTMAST" Association="Self.FK_Doc_History_TTMAST">
+            <End Role="TTMAST" EntitySet="TTMAST" />
+            <End Role="Doc_History" EntitySet="Doc_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DRUG_DIAGNOSIS" Association="Self.FK_DRUG_DIAGNOSIS">
+            <End Role="DIAGNOSIS" EntitySet="DIAGNOSIS" />
+            <End Role="DRUG" EntitySet="DRUG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DT_INVOICE_HD_INVOICE" Association="Self.FK_DT_INVOICE_HD_INVOICE">
+            <End Role="HD_INVOICE" EntitySet="HD_INVOICE" />
+            <End Role="DT_INVOICE" EntitySet="DT_INVOICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DT_LEAVE_DT_LEAVE" Association="Self.FK_DT_LEAVE_DT_LEAVE">
+            <End Role="TTMAST" EntitySet="TTMAST" />
+            <End Role="DT_LEAVE" EntitySet="DT_LEAVE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emp_Doc_History_ANG_EMPLOYEE" Association="Self.FK_Emp_Doc_History_ANG_EMPLOYEE">
+            <End Role="ANG_EMPLOYEE" EntitySet="ANG_EMPLOYEE" />
+            <End Role="Emp_Doc_History" EntitySet="Emp_Doc_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emp_Doc_History_TTMAST" Association="Self.FK_Emp_Doc_History_TTMAST">
+            <End Role="TTMAST" EntitySet="TTMAST" />
+            <End Role="Emp_Doc_History" EntitySet="Emp_Doc_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPSAL_EMPLOYEE" Association="Self.FK_EMPSAL_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="EMPSAL" EntitySet="EMPSAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPSAL_EMPSAL" Association="Self.FK_EMPSAL_EMPSAL">
+            <End Role="TTMAST" EntitySet="TTMAST" />
+            <End Role="EMPSAL" EntitySet="EMPSAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HD_HRPAYADJ_DT_HRPAYADJ" Association="Self.FK_HD_HRPAYADJ_DT_HRPAYADJ">
+            <End Role="HD_HRPAYADJ" EntitySet="HD_HRPAYADJ" />
+            <End Role="DT_HRPAYADJ" EntitySet="DT_HRPAYADJ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rak_Shelf" Association="Self.FK_Rak_Shelf">
+            <End Role="Shelf" EntitySet="Shelf" />
+            <End Role="Rak" EntitySet="Rak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shelf_Shelf" Association="Self.FK_Shelf_Shelf">
+            <End Role="Shelf" EntitySet="Shelf" />
+            <End Role="Shelf1" EntitySet="Shelf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TTMAST_DT_HRPAYADJ" Association="Self.FK_TTMAST_DT_HRPAYADJ">
+            <End Role="TTMAST" EntitySet="TTMAST" />
+            <End Role="DT_HRPAYADJ" EntitySet="DT_HRPAYADJ" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OVODModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="VW_COUNTRY1">
+          <Key>
+            <PropertyRef Name="CN_ID" />
+          </Key>
+          <Property Name="CN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CN_CD" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="CN_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CN_CURR" Type="Int32" />
+          <Property Name="CN_COMPCD" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="OVODEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VW_COUNTRY1" EntityType="OVODModel.VW_COUNTRY1" />
+          <EntitySet Name="TTMASTs" EntityType="OVODModel.TTMAST" />
+          <EntitySet Name="DEPARTMENTs" EntityType="OVODModel.DEPARTMENT" />
+          <EntitySet Name="VW_EMPLOYEE" EntityType="OVODModel.VW_EMPLOYEE" />
+          <EntitySet Name="DESIGNATIONs" EntityType="OVODModel.DESIGNATION" />
+          <EntitySet Name="EMPLOYEESALs" EntityType="OVODModel.EMPLOYEESAL" />
+          <EntitySet Name="EMPLOYEEs" EntityType="OVODModel.EMPLOYEE" />
+          <EntitySet Name="EMPSALs" EntityType="OVODModel.EMPSAL" />
+          <AssociationSet Name="FK_EMPSAL_EMPLOYEE" Association="OVODModel.FK_EMPSAL_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="EMPSAL" EntitySet="EMPSALs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPSAL_EMPSAL" Association="OVODModel.FK_EMPSAL_EMPSAL">
+            <End Role="TTMAST" EntitySet="TTMASTs" />
+            <End Role="EMPSAL" EntitySet="EMPSALs" />
+          </AssociationSet>
+          <EntitySet Name="VW_HD_HRPAYADJ" EntityType="OVODModel.VW_HD_HRPAYADJ" />
+          <EntitySet Name="VW_DT_HRPAYADJ" EntityType="OVODModel.VW_DT_HRPAYADJ" />
+          <EntitySet Name="DT_INVOICE" EntityType="OVODModel.DT_INVOICE" />
+          <EntitySet Name="HD_INVOICE" EntityType="OVODModel.HD_INVOICE" />
+          <AssociationSet Name="FK_DT_INVOICE_HD_INVOICE" Association="OVODModel.FK_DT_INVOICE_HD_INVOICE">
+            <End Role="HD_INVOICE" EntitySet="HD_INVOICE" />
+            <End Role="DT_INVOICE" EntitySet="DT_INVOICE" />
+          </AssociationSet>
+          <EntitySet Name="DT_HRPAYADJ" EntityType="OVODModel.DT_HRPAYADJ" />
+          <EntitySet Name="HD_HRPAYADJ" EntityType="OVODModel.HD_HRPAYADJ" />
+          <AssociationSet Name="FK_HD_HRPAYADJ_DT_HRPAYADJ" Association="OVODModel.FK_HD_HRPAYADJ_DT_HRPAYADJ">
+            <End Role="HD_HRPAYADJ" EntitySet="HD_HRPAYADJ" />
+            <End Role="DT_HRPAYADJ" EntitySet="DT_HRPAYADJ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TTMAST_DT_HRPAYADJ" Association="OVODModel.FK_TTMAST_DT_HRPAYADJ">
+            <End Role="TTMAST" EntitySet="TTMASTs" />
+            <End Role="DT_HRPAYADJ" EntitySet="DT_HRPAYADJ" />
+          </AssociationSet>
+          <EntitySet Name="Raks" EntityType="OVODModel.Rak" />
+          <EntitySet Name="Shelves" EntityType="OVODModel.Shelf" />
+          <AssociationSet Name="FK_Rak_Shelf" Association="OVODModel.FK_Rak_Shelf">
+            <End Role="Shelf" EntitySet="Shelves" />
+            <End Role="Rak" EntitySet="Raks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shelf_Shelf" Association="OVODModel.FK_Shelf_Shelf">
+            <End Role="Shelf" EntitySet="Shelves" />
+            <End Role="Shelf1" EntitySet="Shelves" />
+          </AssociationSet>
+          <EntitySet Name="Emp_Doc_History" EntityType="OVODModel.Emp_Doc_History" />
+          <AssociationSet Name="FK_Emp_Doc_History_TTMAST" Association="OVODModel.FK_Emp_Doc_History_TTMAST">
+            <End Role="TTMAST" EntitySet="TTMASTs" />
+            <End Role="Emp_Doc_History" EntitySet="Emp_Doc_History" />
+          </AssociationSet>
+          <EntitySet Name="ANG_EMPLOYEE" EntityType="OVODModel.ANG_EMPLOYEE" />
+          <AssociationSet Name="FK_Emp_Doc_History_ANG_EMPLOYEE" Association="OVODModel.FK_Emp_Doc_History_ANG_EMPLOYEE">
+            <End Role="ANG_EMPLOYEE" EntitySet="ANG_EMPLOYEE" />
+            <End Role="Emp_Doc_History" EntitySet="Emp_Doc_History" />
+          </AssociationSet>
+          <EntitySet Name="Doc_History" EntityType="OVODModel.Doc_History" />
+          <AssociationSet Name="FK_Doc_History_ANG_EMPLOYEE" Association="OVODModel.FK_Doc_History_ANG_EMPLOYEE">
+            <End Role="ANG_EMPLOYEE" EntitySet="ANG_EMPLOYEE" />
+            <End Role="Doc_History" EntitySet="Doc_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doc_History_TTMAST" Association="OVODModel.FK_Doc_History_TTMAST">
+            <End Role="TTMAST" EntitySet="TTMASTs" />
+            <End Role="Doc_History" EntitySet="Doc_History" />
+          </AssociationSet>
+          <EntitySet Name="DIAGNOSIS" EntityType="OVODModel.DIAGNOSI" />
+          <EntitySet Name="DRUGs" EntityType="OVODModel.DRUG" />
+          <AssociationSet Name="FK_DRUG_DIAGNOSIS" Association="OVODModel.FK_DRUG_DIAGNOSIS">
+            <End Role="DIAGNOSI" EntitySet="DIAGNOSIS" />
+            <End Role="DRUG" EntitySet="DRUGs" />
+          </AssociationSet>
+          <EntitySet Name="Items" EntityType="OVODModel.Item" />
+          <EntitySet Name="DT_LEAVE" EntityType="OVODModel.DT_LEAVE" />
+          <AssociationSet Name="FK_DT_LEAVE_DT_LEAVE" Association="OVODModel.FK_DT_LEAVE_DT_LEAVE">
+            <End Role="TTMAST" EntitySet="TTMASTs" />
+            <End Role="DT_LEAVE" EntitySet="DT_LEAVE" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TTMAST">
+          <Key>
+            <PropertyRef Name="TT_ID" />
+          </Key>
+          <Property Name="TT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TT_CODE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TT_DESC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TT_GROUP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="TT_LVERESUME" Type="Boolean" />
+          <Property Name="TT_LVEACCR" Type="Boolean" />
+          <Property Name="TT_GRATACCR" Type="Boolean" />
+          <Property Name="TT_SUSLVE" Type="Boolean" />
+          <Property Name="TT_SUSGRAT" Type="Boolean" />
+          <Property Name="TT_SUSAIR" Type="Boolean" />
+          <Property Name="TT_TYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EMPSALs" Relationship="OVODModel.FK_EMPSAL_EMPSAL" FromRole="TTMAST" ToRole="EMPSAL" />
+          <Property Name="TT_ED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DT_HRPAYADJ" Relationship="OVODModel.FK_TTMAST_DT_HRPAYADJ" FromRole="TTMAST" ToRole="DT_HRPAYADJ" />
+          <NavigationProperty Name="Emp_Doc_History" Relationship="OVODModel.FK_Emp_Doc_History_TTMAST" FromRole="TTMAST" ToRole="Emp_Doc_History" />
+          <NavigationProperty Name="Doc_History" Relationship="OVODModel.FK_Doc_History_TTMAST" FromRole="TTMAST" ToRole="Doc_History" />
+          <NavigationProperty Name="DT_LEAVE" Relationship="OVODModel.FK_DT_LEAVE_DT_LEAVE" FromRole="TTMAST" ToRole="DT_LEAVE" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="DP_ID" />
+          </Key>
+          <Property Name="DP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DP_CD" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DP_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EM_ID" />
+          </Key>
+          <Property Name="EM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EM_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EM_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EM_LASTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EM_ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EM_PHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EM_GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EM_DOB" Type="DateTime" Precision="3" />
+          <Property Name="EM_DOJ" Type="DateTime" Precision="3" />
+          <Property Name="EM_DOBC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EM_DOJC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EM_PHOTO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EM_COUNTRY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EM_ACTIVE" Type="Boolean" />
+          <Property Name="COMPCD" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="EM_GEN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EM_MAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EM_USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EM_PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EM_DEPT" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EM_DESG" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DESIGNATION">
+          <Key>
+            <PropertyRef Name="DG_ID" />
+          </Key>
+          <Property Name="DG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DG_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DG_DESCRIPTION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EMPLOYEESAL">
+          <Key>
+            <PropertyRef Name="SL_ID" />
+          </Key>
+          <Property Name="SL_ID" Type="Int32" Nullable="false" />
+          <Property Name="EM_ID" Type="Int32" />
+          <Property Name="TT_ID" Type="Int32" />
+          <Property Name="SL_AMT" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="SL_TYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EM_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EM_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TT_DESC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TT_GROUP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EM_ID" />
+          </Key>
+          <Property Name="EM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EM_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EM_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EM_LASTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EM_ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EM_PHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EM_GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EM_DOB" Type="DateTime" Precision="3" />
+          <Property Name="EM_DOJ" Type="DateTime" Precision="3" />
+          <Property Name="EM_PHOTO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EM_COUNTRY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EM_ACTIVE" Type="Boolean" />
+          <Property Name="COMPCD" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="EM_GEN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EM_MAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EM_USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EM_PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EM_DEPT" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EM_DESG" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="EM_COMPCD" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="EM_LOCAL_ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EM_REFERENCE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EM_OFFICIAL_MAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EM_CAMP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EM_GRADE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EM_BANK_CODE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EM_BANK_ACCNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EM_TYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EM_PAY_TYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EM_CATEGORY" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EMPSALs" Relationship="OVODModel.FK_EMPSAL_EMPLOYEE" FromRole="EMPLOYEE" ToRole="EMPSAL" />
+        </EntityType>
+        <EntityType Name="EMPSAL">
+          <Key>
+            <PropertyRef Name="SL_ID" />
+          </Key>
+          <Property Name="SL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EM_ID" Type="Int32" />
+          <Property Name="TT_ID" Type="Int32" />
+          <Property Name="SL_AMT" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="SL_TYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EM_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="OVODModel.FK_EMPSAL_EMPLOYEE" FromRole="EMPSAL" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="TTMAST" Relationship="OVODModel.FK_EMPSAL_EMPSAL" FromRole="EMPSAL" ToRole="TTMAST" />
+        </EntityType>
+        <Association Name="FK_EMPSAL_EMPLOYEE">
+          <End Type="OVODModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="0..1" />
+          <End Type="OVODModel.EMPSAL" Role="EMPSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EM_ID" />
+            </Principal>
+            <Dependent Role="EMPSAL">
+              <PropertyRef Name="EM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPSAL_EMPSAL">
+          <End Type="OVODModel.TTMAST" Role="TTMAST" Multiplicity="0..1" />
+          <End Type="OVODModel.EMPSAL" Role="EMPSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTMAST">
+              <PropertyRef Name="TT_ID" />
+            </Principal>
+            <Dependent Role="EMPSAL">
+              <PropertyRef Name="TT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VW_HD_HRPAYADJ">
+          <Key>
+            <PropertyRef Name="PA_ID" />
+          </Key>
+          <Property Name="PA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PA_HEADER" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PA_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PA_MONTH" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PA_YEAR" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PA_DOCDATE" Type="DateTime" Precision="3" />
+          <Property Name="PA_DOCNO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_DT_HRPAYADJ">
+          <Key>
+            <PropertyRef Name="PAD_ID" />
+          </Key>
+          <Property Name="PAD_ID" Type="Int32" Nullable="false" />
+          <Property Name="PA_ID" Type="Int32" />
+          <Property Name="PA_DOCNO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EM_ID" Type="Int32" />
+          <Property Name="EM_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TT_ID" Type="Int32" />
+          <Property Name="TT_DESC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PAD_QTY" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_RATE" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_AMT" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_REMARKS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DT_INVOICE">
+          <Key>
+            <PropertyRef Name="DID" />
+          </Key>
+          <Property Name="DID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" />
+          <Property Name="IT_CODE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IT_QTY" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="IT_RATE" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="IT_AMT" Type="Decimal" Precision="18" Scale="3" />
+          <NavigationProperty Name="HD_INVOICE" Relationship="OVODModel.FK_DT_INVOICE_HD_INVOICE" FromRole="DT_INVOICE" ToRole="HD_INVOICE" />
+        </EntityType>
+        <EntityType Name="HD_INVOICE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IN_DOCNO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IN_DATE" Type="DateTime" Precision="3" />
+          <Property Name="IN_DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IN_CUSTOMER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IN_TOTAL" Type="Decimal" Precision="18" Scale="3" />
+          <NavigationProperty Name="DT_INVOICE" Relationship="OVODModel.FK_DT_INVOICE_HD_INVOICE" FromRole="HD_INVOICE" ToRole="DT_INVOICE" />
+        </EntityType>
+        <Association Name="FK_DT_INVOICE_HD_INVOICE">
+          <End Type="OVODModel.HD_INVOICE" Role="HD_INVOICE" Multiplicity="0..1" />
+          <End Type="OVODModel.DT_INVOICE" Role="DT_INVOICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HD_INVOICE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DT_INVOICE">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DT_HRPAYADJ">
+          <Key>
+            <PropertyRef Name="PAD_ID" />
+          </Key>
+          <Property Name="PAD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PA_ID" Type="Int32" Nullable="false" />
+          <Property Name="EM_ID" Type="Int32" Nullable="false" />
+          <Property Name="TT_ID" Type="Int32" Nullable="false" />
+          <Property Name="PAD_QTY" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_RATE" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_AMT" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="PAD_REMARKS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HD_HRPAYADJ" Relationship="OVODModel.FK_HD_HRPAYADJ_DT_HRPAYADJ" FromRole="DT_HRPAYADJ" ToRole="HD_HRPAYADJ" />
+          <NavigationProperty Name="TTMAST" Relationship="OVODModel.FK_TTMAST_DT_HRPAYADJ" FromRole="DT_HRPAYADJ" ToRole="TTMAST" />
+        </EntityType>
+        <EntityType Name="HD_HRPAYADJ">
+          <Key>
+            <PropertyRef Name="PA_ID" />
+          </Key>
+          <Property Name="PA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PA_HEADER" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PA_TITLE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PA_MONTH" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PA_YEAR" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PA_DOCDATE" Type="DateTime" Precision="3" />
+          <Property Name="PA_DOCNO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GTOTAL" Type="Decimal" Precision="18" Scale="3" />
+          <NavigationProperty Name="DT_HRPAYADJ" Relationship="OVODModel.FK_HD_HRPAYADJ_DT_HRPAYADJ" FromRole="HD_HRPAYADJ" ToRole="DT_HRPAYADJ" />
+        </EntityType>
+        <Association Name="FK_HD_HRPAYADJ_DT_HRPAYADJ">
+          <End Type="OVODModel.HD_HRPAYADJ" Role="HD_HRPAYADJ" Multiplicity="1" />
+          <End Type="OVODModel.DT_HRPAYADJ" Role="DT_HRPAYADJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HD_HRPAYADJ">
+              <PropertyRef Name="PA_ID" />
+            </Principal>
+            <Dependent Role="DT_HRPAYADJ">
+              <PropertyRef Name="PA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TTMAST_DT_HRPAYADJ">
+          <End Type="OVODModel.TTMAST" Role="TTMAST" Multiplicity="1" />
+          <End Type="OVODModel.DT_HRPAYADJ" Role="DT_HRPAYADJ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTMAST">
+              <PropertyRef Name="TT_ID" />
+            </Principal>
+            <Dependent Role="DT_HRPAYADJ">
+              <PropertyRef Name="TT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Rak">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rak_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="rak_desc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="shelf_id" Type="Int32" />
+          <NavigationProperty Name="Shelf" Relationship="OVODModel.FK_Rak_Shelf" FromRole="Rak" ToRole="Shelf" />
+        </EntityType>
+        <EntityType Name="Shelf">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shelf_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="shelf_desc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Raks" Relationship="OVODModel.FK_Rak_Shelf" FromRole="Shelf" ToRole="Rak" />
+          <NavigationProperty Name="Shelf1" Relationship="OVODModel.FK_Shelf_Shelf" FromRole="Shelf" ToRole="Shelf1" />
+          <NavigationProperty Name="Shelf2" Relationship="OVODModel.FK_Shelf_Shelf" FromRole="Shelf1" ToRole="Shelf" />
+        </EntityType>
+        <Association Name="FK_Rak_Shelf">
+          <End Type="OVODModel.Shelf" Role="Shelf" Multiplicity="0..1" />
+          <End Type="OVODModel.Rak" Role="Rak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shelf">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rak">
+              <PropertyRef Name="shelf_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shelf_Shelf">
+          <End Type="OVODModel.Shelf" Role="Shelf" Multiplicity="1" />
+          <End Type="OVODModel.Shelf" Role="Shelf1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Shelf">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Shelf1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Emp_Doc_History">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_id" Type="Int32" />
+          <Property Name="doc_id" Type="Int32" />
+          <Property Name="update_date" Type="DateTime" Precision="3" />
+          <Property Name="dof_file" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="doc_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="doc_issue_date" Type="DateTime" Precision="3" />
+          <Property Name="doc_expiry_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TTMAST" Relationship="OVODModel.FK_Emp_Doc_History_TTMAST" FromRole="Emp_Doc_History" ToRole="TTMAST" />
+          <NavigationProperty Name="ANG_EMPLOYEE" Relationship="OVODModel.FK_Emp_Doc_History_ANG_EMPLOYEE" FromRole="Emp_Doc_History" ToRole="ANG_EMPLOYEE" />
+        </EntityType>
+        <Association Name="FK_Emp_Doc_History_TTMAST">
+          <End Type="OVODModel.TTMAST" Role="TTMAST" Multiplicity="0..1" />
+          <End Type="OVODModel.Emp_Doc_History" Role="Emp_Doc_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTMAST">
+              <PropertyRef Name="TT_ID" />
+            </Principal>
+            <Dependent Role="Emp_Doc_History">
+              <PropertyRef Name="doc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ANG_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int32" />
+          <Property Name="ContactPreference" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="dateofBirth" Type="DateTime" Precision="3" />
+          <Property Name="department" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="PhotoPath" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Emp_Doc_History" Relationship="OVODModel.FK_Emp_Doc_History_ANG_EMPLOYEE" FromRole="ANG_EMPLOYEE" ToRole="Emp_Doc_History" />
+          <NavigationProperty Name="Doc_History" Relationship="OVODModel.FK_Doc_History_ANG_EMPLOYEE" FromRole="ANG_EMPLOYEE" ToRole="Doc_History" />
+        </EntityType>
+        <Association Name="FK_Emp_Doc_History_ANG_EMPLOYEE">
+          <End Type="OVODModel.ANG_EMPLOYEE" Role="ANG_EMPLOYEE" Multiplicity="0..1" />
+          <End Type="OVODModel.Emp_Doc_History" Role="Emp_Doc_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ANG_EMPLOYEE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Emp_Doc_History">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Doc_History">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doc_id" Type="Int32" />
+          <Property Name="update_date" Type="DateTime" Precision="3" />
+          <Property Name="dof_file" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="doc_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="doc_issue_date" Type="DateTime" Precision="3" />
+          <Property Name="doc_expiry_date" Type="DateTime" Precision="3" />
+          <Property Name="emp_Id" Type="Int32" />
+          <NavigationProperty Name="ANG_EMPLOYEE" Relationship="OVODModel.FK_Doc_History_ANG_EMPLOYEE" FromRole="Doc_History" ToRole="ANG_EMPLOYEE" />
+          <NavigationProperty Name="TTMAST" Relationship="OVODModel.FK_Doc_History_TTMAST" FromRole="Doc_History" ToRole="TTMAST" />
+        </EntityType>
+        <Association Name="FK_Doc_History_ANG_EMPLOYEE">
+          <End Type="OVODModel.ANG_EMPLOYEE" Role="ANG_EMPLOYEE" Multiplicity="0..1" />
+          <End Type="OVODModel.Doc_History" Role="Doc_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ANG_EMPLOYEE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Doc_History">
+              <PropertyRef Name="emp_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doc_History_TTMAST">
+          <End Type="OVODModel.TTMAST" Role="TTMAST" Multiplicity="0..1" />
+          <End Type="OVODModel.Doc_History" Role="Doc_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTMAST">
+              <PropertyRef Name="TT_ID" />
+            </Principal>
+            <Dependent Role="Doc_History">
+              <PropertyRef Name="doc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DIAGNOSI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DIAGNOSIS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DRUGs" Relationship="OVODModel.FK_DRUG_DIAGNOSIS" FromRole="DIAGNOSI" ToRole="DRUG" />
+        </EntityType>
+        <EntityType Name="DRUG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DRUG1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DIG_ID" Type="Int32" />
+          <NavigationProperty Name="DIAGNOSI" Relationship="OVODModel.FK_DRUG_DIAGNOSIS" FromRole="DRUG" ToRole="DIAGNOSI" />
+        </EntityType>
+        <Association Name="FK_DRUG_DIAGNOSIS">
+          <End Type="OVODModel.DIAGNOSI" Role="DIAGNOSI" Multiplicity="0..1" />
+          <End Type="OVODModel.DRUG" Role="DRUG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIAGNOSI">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DRUG">
+              <PropertyRef Name="DIG_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Item_Id" />
+          </Key>
+          <Property Name="Item_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Item_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Item_Desc" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Item_Price" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Item_Category" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Item_Qty" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Item_Date" Type="DateTime" Precision="3" />
+          <Property Name="Item_Expiry" Type="DateTime" Precision="3" />
+          <Property Name="Item_Inactive" Type="Boolean" />
+          <Property Name="Item_Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Cat_Id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DT_LEAVE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LV_DOC_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LV_DOC_DATE" Type="DateTime" Precision="3" />
+          <Property Name="EMP_ID" Type="Int32" />
+          <Property Name="TT_ID" Type="Int32" />
+          <Property Name="LV_DT_FROM" Type="DateTime" Precision="3" />
+          <Property Name="LV_DT_TO" Type="DateTime" Precision="3" />
+          <Property Name="LV_EMAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TTMAST" Relationship="OVODModel.FK_DT_LEAVE_DT_LEAVE" FromRole="DT_LEAVE" ToRole="TTMAST" />
+        </EntityType>
+        <Association Name="FK_DT_LEAVE_DT_LEAVE">
+          <End Type="OVODModel.TTMAST" Role="TTMAST" Multiplicity="0..1" />
+          <End Type="OVODModel.DT_LEAVE" Role="DT_LEAVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTMAST">
+              <PropertyRef Name="TT_ID" />
+            </Principal>
+            <Dependent Role="DT_LEAVE">
+              <PropertyRef Name="TT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OVODModelStoreContainer" CdmEntityContainer="OVODEntities5">
+          <EntitySetMapping Name="VW_COUNTRY1">
+            <EntityTypeMapping TypeName="OVODModel.VW_COUNTRY1">
+              <MappingFragment StoreEntitySet="VW_COUNTRY">
+                <ScalarProperty Name="CN_ID" ColumnName="CN_ID" />
+                <ScalarProperty Name="CN_CD" ColumnName="CN_CD" />
+                <ScalarProperty Name="CN_NAME" ColumnName="CN_NAME" />
+                <ScalarProperty Name="CN_CURR" ColumnName="CN_CURR" />
+                <ScalarProperty Name="CN_COMPCD" ColumnName="CN_COMPCD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTMASTs">
+            <EntityTypeMapping TypeName="OVODModel.TTMAST">
+              <MappingFragment StoreEntitySet="TTMAST">
+                <ScalarProperty Name="TT_ED" ColumnName="TT_ED" />
+                <ScalarProperty Name="TT_TYPE" ColumnName="TT_TYPE" />
+                <ScalarProperty Name="TT_SUSAIR" ColumnName="TT_SUSAIR" />
+                <ScalarProperty Name="TT_SUSGRAT" ColumnName="TT_SUSGRAT" />
+                <ScalarProperty Name="TT_SUSLVE" ColumnName="TT_SUSLVE" />
+                <ScalarProperty Name="TT_GRATACCR" ColumnName="TT_GRATACCR" />
+                <ScalarProperty Name="TT_LVEACCR" ColumnName="TT_LVEACCR" />
+                <ScalarProperty Name="TT_LVERESUME" ColumnName="TT_LVERESUME" />
+                <ScalarProperty Name="TT_GROUP" ColumnName="TT_GROUP" />
+                <ScalarProperty Name="TT_DESC" ColumnName="TT_DESC" />
+                <ScalarProperty Name="TT_CODE" ColumnName="TT_CODE" />
+                <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTMENTs">
+            <EntityTypeMapping TypeName="OVODModel.DEPARTMENT">
+              <MappingFragment StoreEntitySet="DEPARTMENT">
+                <ScalarProperty Name="DP_NAME" ColumnName="DP_NAME" />
+                <ScalarProperty Name="DP_CD" ColumnName="DP_CD" />
+                <ScalarProperty Name="DP_ID" ColumnName="DP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_EMPLOYEE">
+            <EntityTypeMapping TypeName="OVODModel.VW_EMPLOYEE">
+              <MappingFragment StoreEntitySet="VW_EMPLOYEE">
+                <ScalarProperty Name="EM_DESG" ColumnName="EM_DESG" />
+                <ScalarProperty Name="EM_DEPT" ColumnName="EM_DEPT" />
+                <ScalarProperty Name="EM_PASSWORD" ColumnName="EM_PASSWORD" />
+                <ScalarProperty Name="EM_USERNAME" ColumnName="EM_USERNAME" />
+                <ScalarProperty Name="EM_MAIL" ColumnName="EM_MAIL" />
+                <ScalarProperty Name="EM_GEN" ColumnName="EM_GEN" />
+                <ScalarProperty Name="COMPCD" ColumnName="COMPCD" />
+                <ScalarProperty Name="EM_ACTIVE" ColumnName="EM_ACTIVE" />
+                <ScalarProperty Name="EM_COUNTRY" ColumnName="EM_COUNTRY" />
+                <ScalarProperty Name="EM_PHOTO" ColumnName="EM_PHOTO" />
+                <ScalarProperty Name="EM_DOJC" ColumnName="EM_DOJC" />
+                <ScalarProperty Name="EM_DOBC" ColumnName="EM_DOBC" />
+                <ScalarProperty Name="EM_DOJ" ColumnName="EM_DOJ" />
+                <ScalarProperty Name="EM_DOB" ColumnName="EM_DOB" />
+                <ScalarProperty Name="EM_GENDER" ColumnName="EM_GENDER" />
+                <ScalarProperty Name="EM_PHONE" ColumnName="EM_PHONE" />
+                <ScalarProperty Name="EM_ADDRESS" ColumnName="EM_ADDRESS" />
+                <ScalarProperty Name="EM_LASTNAME" ColumnName="EM_LASTNAME" />
+                <ScalarProperty Name="EM_NAME" ColumnName="EM_NAME" />
+                <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+                <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DESIGNATIONs">
+            <EntityTypeMapping TypeName="OVODModel.DESIGNATION">
+              <MappingFragment StoreEntitySet="DESIGNATION">
+                <ScalarProperty Name="DG_DESCRIPTION" ColumnName="DG_DESCRIPTION" />
+                <ScalarProperty Name="DG_CD" ColumnName="DG_CD" />
+                <ScalarProperty Name="DG_ID" ColumnName="DG_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEESALs">
+            <EntityTypeMapping TypeName="OVODModel.EMPLOYEESAL">
+              <MappingFragment StoreEntitySet="EMPLOYEESAL">
+                <ScalarProperty Name="TT_GROUP" ColumnName="TT_GROUP" />
+                <ScalarProperty Name="TT_DESC" ColumnName="TT_DESC" />
+                <ScalarProperty Name="EM_NAME" ColumnName="EM_NAME" />
+                <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+                <ScalarProperty Name="SL_TYPE" ColumnName="SL_TYPE" />
+                <ScalarProperty Name="SL_AMT" ColumnName="SL_AMT" />
+                <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+                <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+                <ScalarProperty Name="SL_ID" ColumnName="SL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEEs">
+            <EntityTypeMapping TypeName="OVODModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="EM_CATEGORY" ColumnName="EM_CATEGORY" />
+                <ScalarProperty Name="EM_PAY_TYPE" ColumnName="EM_PAY_TYPE" />
+                <ScalarProperty Name="EM_TYPE" ColumnName="EM_TYPE" />
+                <ScalarProperty Name="EM_BANK_ACCNO" ColumnName="EM_BANK_ACCNO" />
+                <ScalarProperty Name="EM_BANK_CODE" ColumnName="EM_BANK_CODE" />
+                <ScalarProperty Name="EM_GRADE" ColumnName="EM_GRADE" />
+                <ScalarProperty Name="EM_CAMP" ColumnName="EM_CAMP" />
+                <ScalarProperty Name="EM_OFFICIAL_MAIL" ColumnName="EM_OFFICIAL_MAIL" />
+                <ScalarProperty Name="EM_REFERENCE" ColumnName="EM_REFERENCE" />
+                <ScalarProperty Name="EM_LOCAL_ADDRESS" ColumnName="EM_LOCAL_ADDRESS" />
+                <ScalarProperty Name="EM_COMPCD" ColumnName="EM_COMPCD" />
+                <ScalarProperty Name="EM_DESG" ColumnName="EM_DESG" />
+                <ScalarProperty Name="EM_DEPT" ColumnName="EM_DEPT" />
+                <ScalarProperty Name="EM_PASSWORD" ColumnName="EM_PASSWORD" />
+                <ScalarProperty Name="EM_USERNAME" ColumnName="EM_USERNAME" />
+                <ScalarProperty Name="EM_MAIL" ColumnName="EM_MAIL" />
+                <ScalarProperty Name="EM_GEN" ColumnName="EM_GEN" />
+                <ScalarProperty Name="COMPCD" ColumnName="COMPCD" />
+                <ScalarProperty Name="EM_ACTIVE" ColumnName="EM_ACTIVE" />
+                <ScalarProperty Name="EM_COUNTRY" ColumnName="EM_COUNTRY" />
+                <ScalarProperty Name="EM_PHOTO" ColumnName="EM_PHOTO" />
+                <ScalarProperty Name="EM_DOJ" ColumnName="EM_DOJ" />
+                <ScalarProperty Name="EM_DOB" ColumnName="EM_DOB" />
+                <ScalarProperty Name="EM_GENDER" ColumnName="EM_GENDER" />
+                <ScalarProperty Name="EM_PHONE" ColumnName="EM_PHONE" />
+                <ScalarProperty Name="EM_ADDRESS" ColumnName="EM_ADDRESS" />
+                <ScalarProperty Name="EM_LASTNAME" ColumnName="EM_LASTNAME" />
+                <ScalarProperty Name="EM_NAME" ColumnName="EM_NAME" />
+                <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+                <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPSALs">
+            <EntityTypeMapping TypeName="OVODModel.EMPSAL">
+              <MappingFragment StoreEntitySet="EMPSAL">
+                <ScalarProperty Name="EM_CODE" ColumnName="EM_CODE" />
+                <ScalarProperty Name="SL_TYPE" ColumnName="SL_TYPE" />
+                <ScalarProperty Name="SL_AMT" ColumnName="SL_AMT" />
+                <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+                <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+                <ScalarProperty Name="SL_ID" ColumnName="SL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_HD_HRPAYADJ">
+            <EntityTypeMapping TypeName="OVODModel.VW_HD_HRPAYADJ">
+              <MappingFragment StoreEntitySet="VW_HD_HRPAYADJ">
+                <ScalarProperty Name="PA_DOCNO" ColumnName="PA_DOCNO" />
+                <ScalarProperty Name="PA_DOCDATE" ColumnName="PA_DOCDATE" />
+                <ScalarProperty Name="PA_YEAR" ColumnName="PA_YEAR" />
+                <ScalarProperty Name="PA_MONTH" ColumnName="PA_MONTH" />
+                <ScalarProperty Name="PA_TITLE" ColumnName="PA_TITLE" />
+                <ScalarProperty Name="PA_HEADER" ColumnName="PA_HEADER" />
+                <ScalarProperty Name="PA_ID" ColumnName="PA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DT_HRPAYADJ">
+            <EntityTypeMapping TypeName="OVODModel.VW_DT_HRPAYADJ">
+              <MappingFragment StoreEntitySet="VW_DT_HRPAYADJ">
+                <ScalarProperty Name="PAD_REMARKS" ColumnName="PAD_REMARKS" />
+                <ScalarProperty Name="PAD_AMT" ColumnName="PAD_AMT" />
+                <ScalarProperty Name="PAD_RATE" ColumnName="PAD_RATE" />
+                <ScalarProperty Name="PAD_QTY" ColumnName="PAD_QTY" />
+                <ScalarProperty Name="TT_DESC" ColumnName="TT_DESC" />
+                <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+                <ScalarProperty Name="EM_NAME" ColumnName="EM_NAME" />
+                <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+                <ScalarProperty Name="PA_DOCNO" ColumnName="PA_DOCNO" />
+                <ScalarProperty Name="PA_ID" ColumnName="PA_ID" />
+                <ScalarProperty Name="PAD_ID" ColumnName="PAD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_INVOICE">
+            <EntityTypeMapping TypeName="OVODModel.DT_INVOICE">
+              <MappingFragment StoreEntitySet="DT_INVOICE">
+                <ScalarProperty Name="IT_AMT" ColumnName="IT_AMT" />
+                <ScalarProperty Name="IT_RATE" ColumnName="IT_RATE" />
+                <ScalarProperty Name="IT_QTY" ColumnName="IT_QTY" />
+                <ScalarProperty Name="IT_CODE" ColumnName="IT_CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DID" ColumnName="DID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HD_INVOICE">
+            <EntityTypeMapping TypeName="OVODModel.HD_INVOICE">
+              <MappingFragment StoreEntitySet="HD_INVOICE">
+                <ScalarProperty Name="IN_TOTAL" ColumnName="IN_TOTAL" />
+                <ScalarProperty Name="IN_CUSTOMER" ColumnName="IN_CUSTOMER" />
+                <ScalarProperty Name="IN_DESCRIPTION" ColumnName="IN_DESCRIPTION" />
+                <ScalarProperty Name="IN_DATE" ColumnName="IN_DATE" />
+                <ScalarProperty Name="IN_DOCNO" ColumnName="IN_DOCNO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_HRPAYADJ">
+            <EntityTypeMapping TypeName="OVODModel.DT_HRPAYADJ">
+              <MappingFragment StoreEntitySet="DT_HRPAYADJ">
+                <ScalarProperty Name="PAD_REMARKS" ColumnName="PAD_REMARKS" />
+                <ScalarProperty Name="PAD_AMT" ColumnName="PAD_AMT" />
+                <ScalarProperty Name="PAD_RATE" ColumnName="PAD_RATE" />
+                <ScalarProperty Name="PAD_QTY" ColumnName="PAD_QTY" />
+                <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+                <ScalarProperty Name="EM_ID" ColumnName="EM_ID" />
+                <ScalarProperty Name="PA_ID" ColumnName="PA_ID" />
+                <ScalarProperty Name="PAD_ID" ColumnName="PAD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HD_HRPAYADJ">
+            <EntityTypeMapping TypeName="OVODModel.HD_HRPAYADJ">
+              <MappingFragment StoreEntitySet="HD_HRPAYADJ">
+                <ScalarProperty Name="GTOTAL" ColumnName="GTOTAL" />
+                <ScalarProperty Name="PA_DOCNO" ColumnName="PA_DOCNO" />
+                <ScalarProperty Name="PA_DOCDATE" ColumnName="PA_DOCDATE" />
+                <ScalarProperty Name="PA_YEAR" ColumnName="PA_YEAR" />
+                <ScalarProperty Name="PA_MONTH" ColumnName="PA_MONTH" />
+                <ScalarProperty Name="PA_TITLE" ColumnName="PA_TITLE" />
+                <ScalarProperty Name="PA_HEADER" ColumnName="PA_HEADER" />
+                <ScalarProperty Name="PA_ID" ColumnName="PA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Raks">
+            <EntityTypeMapping TypeName="OVODModel.Rak">
+              <MappingFragment StoreEntitySet="Rak">
+                <ScalarProperty Name="shelf_id" ColumnName="shelf_id" />
+                <ScalarProperty Name="rak_desc" ColumnName="rak_desc" />
+                <ScalarProperty Name="rak_name" ColumnName="rak_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shelves">
+            <EntityTypeMapping TypeName="OVODModel.Shelf">
+              <MappingFragment StoreEntitySet="Shelf">
+                <ScalarProperty Name="shelf_desc" ColumnName="shelf_desc" />
+                <ScalarProperty Name="shelf_name" ColumnName="shelf_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emp_Doc_History">
+            <EntityTypeMapping TypeName="OVODModel.Emp_Doc_History">
+              <MappingFragment StoreEntitySet="Emp_Doc_History">
+                <ScalarProperty Name="doc_expiry_date" ColumnName="doc_expiry_date" />
+                <ScalarProperty Name="doc_issue_date" ColumnName="doc_issue_date" />
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="dof_file" ColumnName="dof_file" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ANG_EMPLOYEE">
+            <EntityTypeMapping TypeName="OVODModel.ANG_EMPLOYEE">
+              <MappingFragment StoreEntitySet="ANG_EMPLOYEE">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="dateofBirth" ColumnName="dateofBirth" />
+                <ScalarProperty Name="ContactPreference" ColumnName="ContactPreference" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doc_History">
+            <EntityTypeMapping TypeName="OVODModel.Doc_History">
+              <MappingFragment StoreEntitySet="Doc_History">
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+                <ScalarProperty Name="doc_expiry_date" ColumnName="doc_expiry_date" />
+                <ScalarProperty Name="doc_issue_date" ColumnName="doc_issue_date" />
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="dof_file" ColumnName="dof_file" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIAGNOSIS">
+            <EntityTypeMapping TypeName="OVODModel.DIAGNOSI">
+              <MappingFragment StoreEntitySet="DIAGNOSIS">
+                <ScalarProperty Name="DIAGNOSIS" ColumnName="DIAGNOSIS" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DRUGs">
+            <EntityTypeMapping TypeName="OVODModel.DRUG">
+              <MappingFragment StoreEntitySet="DRUG">
+                <ScalarProperty Name="DIG_ID" ColumnName="DIG_ID" />
+                <ScalarProperty Name="DRUG1" ColumnName="DRUG" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="OVODModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="Cat_Id" ColumnName="Cat_Id" />
+                <ScalarProperty Name="Item_Image" ColumnName="Item_Image" />
+                <ScalarProperty Name="Item_Inactive" ColumnName="Item_Inactive" />
+                <ScalarProperty Name="Item_Expiry" ColumnName="Item_Expiry" />
+                <ScalarProperty Name="Item_Date" ColumnName="Item_Date" />
+                <ScalarProperty Name="Item_Qty" ColumnName="Item_Qty" />
+                <ScalarProperty Name="Item_Category" ColumnName="Item_Category" />
+                <ScalarProperty Name="Item_Price" ColumnName="Item_Price" />
+                <ScalarProperty Name="Item_Desc" ColumnName="Item_Desc" />
+                <ScalarProperty Name="Item_Code" ColumnName="Item_Code" />
+                <ScalarProperty Name="Item_Id" ColumnName="Item_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_LEAVE">
+            <EntityTypeMapping TypeName="OVODModel.DT_LEAVE">
+              <MappingFragment StoreEntitySet="DT_LEAVE">
+                <ScalarProperty Name="LV_EMAIL" ColumnName="LV_EMAIL" />
+                <ScalarProperty Name="LV_DT_TO" ColumnName="LV_DT_TO" />
+                <ScalarProperty Name="LV_DT_FROM" ColumnName="LV_DT_FROM" />
+                <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+                <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+                <ScalarProperty Name="LV_DOC_DATE" ColumnName="LV_DOC_DATE" />
+                <ScalarProperty Name="LV_DOC_NO" ColumnName="LV_DOC_NO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

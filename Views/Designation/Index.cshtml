@@ -1,0 +1,67 @@
+﻿@model IEnumerable<AngApp.Models.EmpDesignation>
+
+@{
+    ViewBag.Title = "Designation";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+}
+
+@*<h2>Index</h2>*@
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    <a href="@Url.Action("AddorEdit","Designation")" class="btn btn-default"><i class="fa fa-plus"></i>Create New</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.DG_ID)
+                </th>Designation*@
+            <th>
+                @Html.DisplayNameFor(model => model.DG_CD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DG_DESCRIPTION)
+            </th>
+            <th>Actions :</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.DG_ID)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.DG_CD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DG_DESCRIPTION)
+            </td>
+            <td>
+                <a href="@Url.Action("AddorEdit","Designation",new { id=item.DG_ID})" class="btn btn-default"><i class="fa fa-pencil"></i>Edit</a>
+                <a onclick="Delete(@item.DG_ID)" class="btn btn-default"><i class="fa fa-trash"></i>Delete</a>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+<script>
+    $(function () {
+    var SuccessMsg = '@TempData["SaveMessage"]';
+    if (SuccessMsg !== '')
+    alertify.success(SuccessMsg);
+    });
+
+    function Delete(id){
+        alertify.confirm('', 'Are You Sure To Delete The Record ?', function () {
+            window.location.href = '@Url.Action("Delete", "Designation")/' + id;
+        }, null);  
+    }
+</script>
+}

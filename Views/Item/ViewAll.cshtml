@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AngApp.Item>
+
+@{
+    Layout = null;
+}
+
+<table class="table table-striped table-condensed" id="ItemTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Desc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Expiry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Inactive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Desc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Expiry)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Inactive)
+                </td>
+                <td>
+                    <a class="btn btn-primary bt-sm" onclick="Edit('@Url.Action("AddorEdit","Item",new { id=@item.Item_Id})')"><i class="fa fa-pencil fa-lg"></i></a>
+                    <a class="btn btn-danger" onclick="Delete('@Url.Action("Delete","Item",new { id=@item.Item_Id})')"><i class="fas fa-trash-o fa-lg"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

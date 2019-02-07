@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "SyncSales";
+    Layout = "~/Views/Shared/SubTheme.cshtml";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<head>
+    @*.
+    <title>Syncfussion Sales</title>*@
+    <style type="text/css">
+        .webGrid {
+            margin: 4px;
+            border-collapse: collapse;
+            width: 500px;
+            background-color: #B4CFC3;
+        }
+
+        .header {
+            background-color: #C1D4E6;
+            font-weight: bold;
+            color: #FFF;
+        }
+
+        .webGrid th, .webGrid td {
+            border: 1px solid #C0C0C0;
+            padding: 5px;
+        }
+
+        .alt {
+            background-color: #E4E9F5;
+            color: #000;
+        }
+
+        .gridHead a:hover {
+            text-decoration: underline;
+        }
+
+        .description {
+            width: auto;
+        }
+
+        .select {
+            background-color: #71857C;
+        }
+
+        .namewidth {
+            width: 450px;
+        }
+    </style>
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="scripts/jquery-3.3.1.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <link href="Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="scripts/dataTables.bootstrap4.min.js"></script>
+    <script src="scripts/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#EmployeeGridViewList").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+        });
+    </script>
+    <style>
+        .btnMargin {
+            margin-bottom: 10px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-body">
+        <asp:Button ID="btnExportToExcel" CssClass="btnMargin btn btn-outline-primary rounded-0" runat="server" Text="ExportToExcel" OnClick="btnExportToExcel_Click" />
+        @*
+        <asp:Button ID="btnExportToWord" CssClass="btnMargin btn btn-outline-primary rounded-0" runat="server" Text="ExportToWord" OnClick="btnExportToWord_Click" />
+        <asp:Button ID="btnExportToPDF" CssClass="btnMargin btn btn-outline-primary rounded-0" runat="server" Text="ExportToPDF" OnClick="btnExportToPDF_Click" />
+        <asp:GridView ID="EmployeeGridViewList" CssClass="table table-bordered" runat="server"></asp:GridView>*@
+    </div>
+
+    @*<div>
+            Hide   Copy Code
+            <input type="button" value="File Upload"
+                   onclick="window.location.href('@Url.Action(" FileUpload","Grid")')" />
+            <a href="@Url.Content("FileUpload")">File Uploader</a>
+            <input type="button" value="Forgot Password"
+                   onclick="window.location.href('@Url.Action("SelectCategory","Grid")')" />
+            <a href="@Url.Content("~/Grid/SelectCategory")">Select Category</a>
+        </div>*@
+    <div>
+        <a href="@Url.Content("~/Grid/ItemMaster")">Item master</a>
+    </div>
+    <div>
+
+        @*<h2>Grid</h2>*@
+
+        @*@section ScriptReferenceSection{
+                <script src="@Url.Content("~/Scripts/cultures/ej.culture.en-US.min.js")"></script>
+            }
+            @section SampleHeading{<span class="sampleName">DatePicker / Default</span> }
+            @section ControlsSection{
+                <div class="frame ">
+                    <div class="control">
+                        @Html.EJ().DatePicker("DatePick").EnablePersistence(true).Value(ViewBag.datevalue)
+
+                    </div>
+                </div>
+            }*@
+
+
+        @*@Html.EJ().NumericTextbox("numeric").Value("1000")*@
+
+
+        <style type="text/css">
+            .table {
+                margin: 4px;
+                border-collapse: collapse;
+                width: 300px;
+            }
+
+            .header {
+                background-color: gray;
+                font-weight: bold;
+                color: #fff;
+            }
+
+            .table th, .table td {
+                border: 1px solid black;
+                padding: 5px;
+            }
+
+            .colmnwidth {
+                width: 250px;
+            }
+        </style>
+
+        @grid.GetHtml(
+
+    tableStyle: "table", // applying style on grid
+
+    fillEmptyRows: true,
+    //show empty row when there is only one record on page to it will display all empty rows there.
+    headerStyle: "header", //applying style.
+
+    footerStyle: "grid-footer", //applying style.
+
+    mode: WebGridPagerModes.All, //paging to grid
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+
+    columns: new[]  // colums in grid
+    {
+        grid.Column("INV_NUM","Inv No"), //the model fields to display
+        grid.Column("INV_DATE","Date",
+        format: (item) => string.Format("{0:dd-MMM-yyyy}", item.INV_DATE) ),
+        grid.Column("LOC_CODE","Loc Code"),
+        grid.Column("LOC_NAME"),
+        grid.Column("CUST_NAME","Name",canSort:true,style:"namewidth"),
+        grid.Column("NETAMT"),
+        grid.Column(format: (item) => Html.ActionLink("Edit", "INV_NUM", new { id = item.INV_NUM })),
+        grid.Column("INV_NUM", format: (item) => Html.ActionLink((string)item.INV_NUM.ToString(), "dtg", new { id = item.INV_NUM }))
+
+   })
+    </div>
+    <div class="editorContainer">
+        @*@Html.DropDownList("SelectedEmployee",
+            new SelectList((System.Collections.IEnumerable)ViewData["bankDetails"], "bnk_code", "bnk_name"))*@
+    </div>
+</body>
+
